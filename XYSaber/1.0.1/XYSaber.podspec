@@ -12,7 +12,7 @@ Pod::Spec.new do |s|
   s.platform        = :ios, "9.0"
   s.source          = { :git => "https://github.com/apelxy/XYSaber.git", :tag => "v1.0.1" }
   s.source_files    = "XYSaber/NSObject+XY.h","XYSaber/UIView+XY.h","XYSaber/UIScrollView+XY.h"
-  s.public_header_files    = "XYSaber/NSObject+XY.h"
+  s.public_header_files    = "XYSaber/NSObject+XY.h","XYSaber/UIView+XY.h","XYSaber/UIScrollView+XY.h"
   s.framework       = "UIKit"
   s.dependency "AFNetworking", "~> 3.0"
   s.license= "Copyright (c) 2019年 LXY. All rights reserved."
