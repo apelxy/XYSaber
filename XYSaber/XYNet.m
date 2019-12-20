@@ -13,7 +13,7 @@
 @end
 
 @implementation XYNet
--(void)requestWithURL:(NSString*)url parameters:(id)parameters headers:(NSDictionary*)headers completionHandler:(void (^)(NSURLResponse *response, NSData *data, NSError *error))completionHandler{
+-(void)requestWithURL:(NSString*)url parameters:(id)parameters headers:(NSDictionary*)headers success:(void (^)(NSURLResponse *response, NSData *data))success failure:(void (^)(NSError *error))failure{
 
     NSURL *urlStr = [NSURL URLWithString:url];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:urlStr];
@@ -41,19 +41,23 @@
     
     //开始请求
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        [self beginRequest:request completionHandler:completionHandler];
+        [self beginRequest:request success:success failure:failure];
     });
 }
--(void)beginRequest:(NSMutableURLRequest*)request completionHandler:(void (^)(NSURLResponse *response, NSData *data, NSError *error))completionHandler{
+-(void)beginRequest:(NSMutableURLRequest*)request success:(void (^)(NSURLResponse *response, NSData *data))success failure:(void (^)(NSError *error))failure{
     NSURLSession *session = [NSURLSession sharedSession];
     NSURLSessionDataTask *dataTask = [session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
         
         self.count++;
         if (error && self.count < self.retryCount) {
-            [self beginRequest:request completionHandler:completionHandler];
+            [self beginRequest:request success:success failure:failure];
         }else{
             dispatch_async(dispatch_get_main_queue(), ^{
-                completionHandler(response,data,error);
+                if (error) {
+                    failure(error);
+                }else{
+                    success(response,data);
+                }
             });
         }
     }];

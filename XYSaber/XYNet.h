@@ -13,7 +13,7 @@
 
 @property (nonatomic,assign) NSInteger retryCount;
 
--(void)requestWithURL:(NSString*)url parameters:(id)parameters headers:(NSDictionary*)headers completionHandler:(void (^)(NSURLResponse *response, NSData *data, NSError *error))completionHandler;
+-(void)requestWithURL:(NSString*)url parameters:(id)parameters headers:(NSDictionary*)headers success:(void (^)(NSURLResponse *response, NSData *data))success failure:(void (^)(NSError *error))failure;
 
 
 @end
