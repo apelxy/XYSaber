@@ -38,22 +38,26 @@
         NSString *value = headers[key];
         [request addValue:value forHTTPHeaderField:key];
     }
-
+    
+    //开始请求
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        NSURLSession *session = [NSURLSession sharedSession];
-        NSURLSessionDataTask *dataTask = [session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
-            dispatch_async(dispatch_get_main_queue(), ^{
-                self.count++;
-                if (error && self.count < self.retryCount) {
-                    [self requestWithURL:url parameters:parameters headers:headers completionHandler:completionHandler];
-                }else{
-                    completionHandler(response,data,error);
-                }
-            });
-        }];
-        [dataTask resume];
+        [self beginRequest:request completionHandler:completionHandler];
     });
 }
-
+-(void)beginRequest:(NSMutableURLRequest*)request completionHandler:(void (^)(NSURLResponse *response, NSData *data, NSError *error))completionHandler{
+    NSURLSession *session = [NSURLSession sharedSession];
+    NSURLSessionDataTask *dataTask = [session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+        
+        self.count++;
+        if (error && self.count < self.retryCount) {
+            [self beginRequest:request completionHandler:completionHandler];
+        }else{
+            dispatch_async(dispatch_get_main_queue(), ^{
+                completionHandler(response,data,error);
+            });
+        }
+    }];
+    [dataTask resume];
+}
 
 @end
