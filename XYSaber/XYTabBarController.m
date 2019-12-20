@@ -64,9 +64,9 @@
 }
 -(UIView*)tabBar{
     if (!_tabBar) {
-        _tabBar = [[UIView alloc]initWithFrame:CGRectMake(0, xy_kHeight - 49, xy_kWidth, 49)];
+        _tabBar = [[UIView alloc]initWithFrame:CGRectMake(0, XYDevice.screenHeight - 49, XYDevice.screenWidth, 49)];
         if (XYDevice.isX) {
-            _tabBar.y = xy_kHeight - 49 - 34;
+            _tabBar.y = XYDevice.screenHeight - 49 - 34;
             _tabBar.height = 49+34;
         }
         _tabBar.backgroundColor = [UIColor whiteColor];
