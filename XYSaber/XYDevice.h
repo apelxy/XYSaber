@@ -10,14 +10,13 @@
 #import <UIKit/UIKit.h>
 #import <MediaPlayer/MediaPlayer.h>
 @interface XYDevice : NSObject
+@property (nonatomic,class,readonly,assign) CGFloat screenWidth;
+@property (nonatomic,class,readonly,assign) CGFloat screenHeight;
+@property (nonatomic,class,readonly,assign) CGFloat safeAreaInsetsTop;
+@property (nonatomic,class,readonly,assign) CGFloat safeAreaInsetsBottom;
+@property (nonatomic,class,readonly,assign) BOOL isX;
 
-@property (nonatomic,assign) CGFloat safeAreaInsetsTop;
-@property (nonatomic,assign) CGFloat safeAreaInsetsBottom;
-@property (nonatomic,assign,readonly) BOOL isX;
 
-+(instancetype)shared;
--(void)volumeMonitorNotificationHandler:(void(^)(NSNotification *notification))notificationHandler;
--(void)setVolumeView:(MPVolumeView*)volumeView;
 @end
 
 

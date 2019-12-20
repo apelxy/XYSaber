@@ -65,7 +65,7 @@
 -(UIView*)tabBar{
     if (!_tabBar) {
         _tabBar = [[UIView alloc]initWithFrame:CGRectMake(0, xy_kHeight - 49, xy_kWidth, 49)];
-        if ([XYDevice shared].isX) {
+        if (XYDevice.isX) {
             _tabBar.y = xy_kHeight - 49 - 34;
             _tabBar.height = 49+34;
         }

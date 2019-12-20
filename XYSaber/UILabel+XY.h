@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface UILabel (XY)
+
 -(void)xy_contentFitToWidth;
 
 @end

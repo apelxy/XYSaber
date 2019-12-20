@@ -11,16 +11,16 @@
 
 @interface XYApp : NSObject
 
-@property (nonatomic,copy,readonly,class) NSString *version;
-@property (nonatomic,copy,readonly,class) NSString *bundleId;
-@property (nonatomic,copy,readonly,class) UIViewController *currentViewController;
-@property (nonatomic,assign,readonly,class) BOOL statusBarHidden;
-@property (nonatomic,strong,readonly,class) UIView *firstResponder;
-@property (nonatomic,strong,readonly,class) NSDictionary *infoDictionary;
+@property (nonatomic,class,readonly,copy) NSString *version;
+@property (nonatomic,class,readonly,copy) NSString *bundleId;
+@property (nonatomic,class,readonly,copy) UIViewController *currentViewController;
+@property (nonatomic,class,readonly,assign) BOOL statusBarHidden;
+@property (nonatomic,class,readonly,strong) UIView *firstResponder;
+@property (nonatomic,class,readonly,strong) NSDictionary *infoDictionary;
 
-@property (nonatomic,readonly,class,copy) NSString *cachesPath;
-@property (nonatomic,readonly,class,copy) NSString *documentPath;
-@property (nonatomic,readonly,class,copy) NSString *libraryPath;
+@property (nonatomic,class,readonly,copy) NSString *cachesPath;
+@property (nonatomic,class,readonly,copy) NSString *documentPath;
+@property (nonatomic,class,readonly,copy) NSString *libraryPath;
 
 @end
 

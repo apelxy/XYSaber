@@ -11,13 +11,7 @@
 
 @interface UIButton (XY)
 
-@property (nonatomic,copy) NSString *title;
-@property (nonatomic,strong) UIColor *titleColor;
-@property (nonatomic,strong) UIImage *image;
-@property (nonatomic,strong) UIImage *backgroundImage;
-
 @property (nonatomic,copy) void(^action)(UIButton *button);
-
 
 -(void)xy_contentFitToWith;
 

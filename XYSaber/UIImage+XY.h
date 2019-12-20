@@ -8,7 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-
 @interface UIImage (XY)
 +(UIImage*)xy_imageWithColor:(UIColor*)color size:(CGSize)size;
 @end

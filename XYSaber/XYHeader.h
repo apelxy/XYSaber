@@ -9,9 +9,6 @@
 #ifndef XYHeader_h
 #define XYHeader_h
 
-#define xy_kWidth [UIScreen mainScreen].bounds.size.width
-#define xy_kHeight [UIScreen mainScreen].bounds.size.height
-
 #define setWeakSelf  __weak typeof(self) weakSelf = self;
 
 #define NSStringFromInt(A) [NSString stringWithFormat:@"%d",A]

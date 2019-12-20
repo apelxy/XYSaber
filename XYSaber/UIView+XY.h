@@ -24,7 +24,6 @@
 
 @property (nonatomic,copy) void(^click)(void);
 
-
 -(void)xy_removeAllSubViews;
 
 -(void)xy_setMulCornerWithRadius:(CGFloat)radius corners:(UIRectCorner)corners;
