@@ -36,6 +36,8 @@
 		89102EC723AB922600DA5718 /* XYHeader.h in Headers */ = {isa = PBXBuildFile; fileRef = 89102EC623AB922600DA5718 /* XYHeader.h */; };
 		89102ECA23AB92BC00DA5718 /* XYDevice.h in Headers */ = {isa = PBXBuildFile; fileRef = 89102EC823AB92BC00DA5718 /* XYDevice.h */; };
 		89102ECB23AB92BC00DA5718 /* XYDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = 89102EC923AB92BC00DA5718 /* XYDevice.m */; };
+		8960B59D23ACF38300AA4B31 /* XYNet.h in Headers */ = {isa = PBXBuildFile; fileRef = 8960B59B23ACF38300AA4B31 /* XYNet.h */; };
+		8960B59E23ACF38300AA4B31 /* XYNet.m in Sources */ = {isa = PBXBuildFile; fileRef = 8960B59C23ACF38300AA4B31 /* XYNet.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -68,6 +70,8 @@
 		89102EC623AB922600DA5718 /* XYHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XYHeader.h; sourceTree = "<group>"; };
 		89102EC823AB92BC00DA5718 /* XYDevice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYDevice.h; sourceTree = "<group>"; };
 		89102EC923AB92BC00DA5718 /* XYDevice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XYDevice.m; sourceTree = "<group>"; };
+		8960B59B23ACF38300AA4B31 /* XYNet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYNet.h; sourceTree = "<group>"; };
+		8960B59C23ACF38300AA4B31 /* XYNet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XYNet.m; sourceTree = "<group>"; };
 		89B23C9023AB6B80004AD1FC /* XYSaber.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = XYSaber.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		89B23C9423AB6B80004AD1FC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -121,6 +125,8 @@
 				89102EA823AB91DD00DA5718 /* UIView+XY.m */,
 				89102EC823AB92BC00DA5718 /* XYDevice.h */,
 				89102EC923AB92BC00DA5718 /* XYDevice.m */,
+				8960B59B23ACF38300AA4B31 /* XYNet.h */,
+				8960B59C23ACF38300AA4B31 /* XYNet.m */,
 				89102EA623AB91DD00DA5718 /* XYApp.h */,
 				89102EA323AB91DD00DA5718 /* XYApp.m */,
 				89102E9B23AB91DC00DA5718 /* XYButtonSupport.h */,
@@ -148,6 +154,7 @@
 				89102EBA23AB91DE00DA5718 /* UIButton+XY.h in Headers */,
 				89102EAF23AB91DE00DA5718 /* XYViewSupport.h in Headers */,
 				89102EC423AB91DE00DA5718 /* UIImage+XY.h in Headers */,
+				8960B59D23ACF38300AA4B31 /* XYNet.h in Headers */,
 				89102EAD23AB91DE00DA5718 /* UIAlertController+XY.h in Headers */,
 				89102EC723AB922600DA5718 /* XYHeader.h in Headers */,
 				89102EAE23AB91DE00DA5718 /* UIColor+XY.h in Headers */,
@@ -238,6 +245,7 @@
 				89102EB423AB91DE00DA5718 /* XYViewSupport.m in Sources */,
 				89102EB323AB91DE00DA5718 /* UIImage+XY.m in Sources */,
 				89102EC223AB91DE00DA5718 /* UIView+XY.m in Sources */,
+				8960B59E23ACF38300AA4B31 /* XYNet.m in Sources */,
 				89102EBE23AB91DE00DA5718 /* XYTabBarController.m in Sources */,
 				89102ECB23AB92BC00DA5718 /* XYDevice.m in Sources */,
 				89102EAC23AB91DE00DA5718 /* UIAlertController+XY.m in Sources */,
