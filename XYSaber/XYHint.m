@@ -56,7 +56,7 @@
 }
 -(UILabel*)msgLabel{
     if (!_msgLabel) {
-        _msgLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0,[self contentSize:self.message].width + 20, [self contentSize:self.message].height)];
+        _msgLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0,[self contentSize:self.message].width + 50, [self contentSize:self.message].height)];
         _msgLabel.text = self.message;
         _msgLabel.textAlignment = NSTextAlignmentCenter;
         _msgLabel.textColor = [UIColor whiteColor];
