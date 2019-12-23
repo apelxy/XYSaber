@@ -38,6 +38,8 @@
 		89102ECB23AB92BC00DA5718 /* XYDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = 89102EC923AB92BC00DA5718 /* XYDevice.m */; };
 		8960B59D23ACF38300AA4B31 /* XYNet.h in Headers */ = {isa = PBXBuildFile; fileRef = 8960B59B23ACF38300AA4B31 /* XYNet.h */; };
 		8960B59E23ACF38300AA4B31 /* XYNet.m in Sources */ = {isa = PBXBuildFile; fileRef = 8960B59C23ACF38300AA4B31 /* XYNet.m */; };
+		89EFFFBE23B05DBD00192A75 /* UITextField+XY.h in Headers */ = {isa = PBXBuildFile; fileRef = 89EFFFBC23B05DBD00192A75 /* UITextField+XY.h */; };
+		89EFFFBF23B05DBE00192A75 /* UITextField+XY.m in Sources */ = {isa = PBXBuildFile; fileRef = 89EFFFBD23B05DBD00192A75 /* UITextField+XY.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -74,6 +76,8 @@
 		8960B59C23ACF38300AA4B31 /* XYNet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XYNet.m; sourceTree = "<group>"; };
 		89B23C9023AB6B80004AD1FC /* XYSaber.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = XYSaber.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		89B23C9423AB6B80004AD1FC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		89EFFFBC23B05DBD00192A75 /* UITextField+XY.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITextField+XY.h"; sourceTree = "<group>"; };
+		89EFFFBD23B05DBD00192A75 /* UITextField+XY.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITextField+XY.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,6 +123,8 @@
 				89102E9923AB91DC00DA5718 /* UIImage+XY.m */,
 				89102EA223AB91DD00DA5718 /* UILabel+XY.h */,
 				89102E9623AB91DC00DA5718 /* UILabel+XY.m */,
+				89EFFFBC23B05DBD00192A75 /* UITextField+XY.h */,
+				89EFFFBD23B05DBD00192A75 /* UITextField+XY.m */,
 				89102E9823AB91DC00DA5718 /* UIScrollView+XY.h */,
 				89102EA123AB91DD00DA5718 /* UIScrollView+XY.m */,
 				89102E9C23AB91DC00DA5718 /* UIView+XY.h */,
@@ -158,6 +164,7 @@
 				89102EAD23AB91DE00DA5718 /* UIAlertController+XY.h in Headers */,
 				89102EC723AB922600DA5718 /* XYHeader.h in Headers */,
 				89102EAE23AB91DE00DA5718 /* UIColor+XY.h in Headers */,
+				89EFFFBE23B05DBD00192A75 /* UITextField+XY.h in Headers */,
 				89102EC023AB91DE00DA5718 /* XYApp.h in Headers */,
 				89102EC323AB91DE00DA5718 /* NSObject+XY.h in Headers */,
 				89102ECA23AB92BC00DA5718 /* XYDevice.h in Headers */,
@@ -250,6 +257,7 @@
 				89102ECB23AB92BC00DA5718 /* XYDevice.m in Sources */,
 				89102EAC23AB91DE00DA5718 /* UIAlertController+XY.m in Sources */,
 				89102EB023AB91DE00DA5718 /* UILabel+XY.m in Sources */,
+				89EFFFBF23B05DBE00192A75 /* UITextField+XY.m in Sources */,
 				89102EB123AB91DE00DA5718 /* XYObjectSupport.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
