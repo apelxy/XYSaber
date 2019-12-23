@@ -36,6 +36,12 @@
 		89102EC723AB922600DA5718 /* XYHeader.h in Headers */ = {isa = PBXBuildFile; fileRef = 89102EC623AB922600DA5718 /* XYHeader.h */; };
 		89102ECA23AB92BC00DA5718 /* XYDevice.h in Headers */ = {isa = PBXBuildFile; fileRef = 89102EC823AB92BC00DA5718 /* XYDevice.h */; };
 		89102ECB23AB92BC00DA5718 /* XYDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = 89102EC923AB92BC00DA5718 /* XYDevice.m */; };
+		893DB25523B0A60A00DF9CE8 /* UITableView+XY.m in Sources */ = {isa = PBXBuildFile; fileRef = 893DB24F23B0A60900DF9CE8 /* UITableView+XY.m */; };
+		893DB25623B0A60A00DF9CE8 /* UITableViewCell+XY.h in Headers */ = {isa = PBXBuildFile; fileRef = 893DB25023B0A60900DF9CE8 /* UITableViewCell+XY.h */; };
+		893DB25723B0A60A00DF9CE8 /* UITableViewCell+XY.m in Sources */ = {isa = PBXBuildFile; fileRef = 893DB25123B0A60A00DF9CE8 /* UITableViewCell+XY.m */; };
+		893DB25823B0A60A00DF9CE8 /* UITableView+XY.h in Headers */ = {isa = PBXBuildFile; fileRef = 893DB25223B0A60A00DF9CE8 /* UITableView+XY.h */; };
+		893DB25923B0A60A00DF9CE8 /* XYTableViewSupport.h in Headers */ = {isa = PBXBuildFile; fileRef = 893DB25323B0A60A00DF9CE8 /* XYTableViewSupport.h */; };
+		893DB25A23B0A60A00DF9CE8 /* XYTableViewSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = 893DB25423B0A60A00DF9CE8 /* XYTableViewSupport.m */; };
 		8960B59D23ACF38300AA4B31 /* XYNet.h in Headers */ = {isa = PBXBuildFile; fileRef = 8960B59B23ACF38300AA4B31 /* XYNet.h */; };
 		8960B59E23ACF38300AA4B31 /* XYNet.m in Sources */ = {isa = PBXBuildFile; fileRef = 8960B59C23ACF38300AA4B31 /* XYNet.m */; };
 		89EF002123B089C900192A75 /* XYHint.h in Headers */ = {isa = PBXBuildFile; fileRef = 89EF001D23B089C900192A75 /* XYHint.h */; };
@@ -76,6 +82,12 @@
 		89102EC623AB922600DA5718 /* XYHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XYHeader.h; sourceTree = "<group>"; };
 		89102EC823AB92BC00DA5718 /* XYDevice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYDevice.h; sourceTree = "<group>"; };
 		89102EC923AB92BC00DA5718 /* XYDevice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XYDevice.m; sourceTree = "<group>"; };
+		893DB24F23B0A60900DF9CE8 /* UITableView+XY.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableView+XY.m"; sourceTree = "<group>"; };
+		893DB25023B0A60900DF9CE8 /* UITableViewCell+XY.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableViewCell+XY.h"; sourceTree = "<group>"; };
+		893DB25123B0A60A00DF9CE8 /* UITableViewCell+XY.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableViewCell+XY.m"; sourceTree = "<group>"; };
+		893DB25223B0A60A00DF9CE8 /* UITableView+XY.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableView+XY.h"; sourceTree = "<group>"; };
+		893DB25323B0A60A00DF9CE8 /* XYTableViewSupport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYTableViewSupport.h; sourceTree = "<group>"; };
+		893DB25423B0A60A00DF9CE8 /* XYTableViewSupport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XYTableViewSupport.m; sourceTree = "<group>"; };
 		8960B59B23ACF38300AA4B31 /* XYNet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYNet.h; sourceTree = "<group>"; };
 		8960B59C23ACF38300AA4B31 /* XYNet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XYNet.m; sourceTree = "<group>"; };
 		89B23C9023AB6B80004AD1FC /* XYSaber.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = XYSaber.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -123,6 +135,12 @@
 				89102EAB23AB91DD00DA5718 /* NSObject+XY.m */,
 				89102E9323AB91DC00DA5718 /* UIAlertController+XY.h */,
 				89102E9223AB91DC00DA5718 /* UIAlertController+XY.m */,
+				893DB25223B0A60A00DF9CE8 /* UITableView+XY.h */,
+				893DB24F23B0A60900DF9CE8 /* UITableView+XY.m */,
+				893DB25023B0A60900DF9CE8 /* UITableViewCell+XY.h */,
+				893DB25123B0A60A00DF9CE8 /* UITableViewCell+XY.m */,
+				893DB25323B0A60A00DF9CE8 /* XYTableViewSupport.h */,
+				893DB25423B0A60A00DF9CE8 /* XYTableViewSupport.m */,
 				89EF001D23B089C900192A75 /* XYHint.h */,
 				89EF002023B089C900192A75 /* XYHint.m */,
 				89EF001E23B089C900192A75 /* XYTimer.h */,
@@ -170,8 +188,11 @@
 				89102EB523AB91DE00DA5718 /* XYButtonSupport.h in Headers */,
 				89102EBF23AB91DE00DA5718 /* XYTabBarController.h in Headers */,
 				89102EBA23AB91DE00DA5718 /* UIButton+XY.h in Headers */,
+				893DB25623B0A60A00DF9CE8 /* UITableViewCell+XY.h in Headers */,
 				89102EAF23AB91DE00DA5718 /* XYViewSupport.h in Headers */,
+				893DB25823B0A60A00DF9CE8 /* UITableView+XY.h in Headers */,
 				89102EC423AB91DE00DA5718 /* UIImage+XY.h in Headers */,
+				893DB25923B0A60A00DF9CE8 /* XYTableViewSupport.h in Headers */,
 				8960B59D23ACF38300AA4B31 /* XYNet.h in Headers */,
 				89102EAD23AB91DE00DA5718 /* UIAlertController+XY.h in Headers */,
 				89102EC723AB922600DA5718 /* XYHeader.h in Headers */,
@@ -265,9 +286,11 @@
 				89EF002423B089C900192A75 /* XYHint.m in Sources */,
 				89EF002323B089C900192A75 /* XYTimer.m in Sources */,
 				89102EBD23AB91DE00DA5718 /* XYApp.m in Sources */,
+				893DB25723B0A60A00DF9CE8 /* UITableViewCell+XY.m in Sources */,
 				89102EB423AB91DE00DA5718 /* XYViewSupport.m in Sources */,
 				89102EB323AB91DE00DA5718 /* UIImage+XY.m in Sources */,
 				89102EC223AB91DE00DA5718 /* UIView+XY.m in Sources */,
+				893DB25A23B0A60A00DF9CE8 /* XYTableViewSupport.m in Sources */,
 				8960B59E23ACF38300AA4B31 /* XYNet.m in Sources */,
 				89102EBE23AB91DE00DA5718 /* XYTabBarController.m in Sources */,
 				89102ECB23AB92BC00DA5718 /* XYDevice.m in Sources */,
@@ -275,6 +298,7 @@
 				89102EB023AB91DE00DA5718 /* UILabel+XY.m in Sources */,
 				89EFFFBF23B05DBE00192A75 /* UITextField+XY.m in Sources */,
 				89102EB123AB91DE00DA5718 /* XYObjectSupport.m in Sources */,
+				893DB25523B0A60A00DF9CE8 /* UITableView+XY.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
