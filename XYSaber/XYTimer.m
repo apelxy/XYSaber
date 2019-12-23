@@ -7,8 +7,7 @@
 //
 
 #import "XYTimer.h"
-#import "XYVerify.h"
-#import "XYKit.h"
+#import "XYHeader.h"
 @interface XYTimer ()
 @property (nonatomic,strong) NSTimer *timer;
 @property (nonatomic,assign) NSInteger currentTime;
