@@ -8,7 +8,7 @@
 
 #import "UIView+XY.h"
 #import <objc/runtime.h>
-//#import "XYHint.h"
+#import "XYHint.h"
 #import "NSObject+XY.h"
 #import "XYViewSupport.h"
 
@@ -388,5 +388,12 @@ static UIColor *borderColor_id = nil;
     self.transform = CGAffineTransformMakeRotation(M_PI * angle / 180);
 }
 
+//显示提示信息
+-(void)xy_showMsg:(NSString*)msg endTime:(NSInteger)endTime{
+    
+    XYHint *hint = [[XYHint alloc]initWithView:self message:msg loading:NO];
+    hint.endTime = endTime;
+    [hint show];
+}
 
 @end

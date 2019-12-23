@@ -24,10 +24,6 @@
 
 @property (nonatomic,copy) void(^click)(void);
 
--(void)xy_removeAllSubViews;
-
--(void)xy_setMulCornerWithRadius:(CGFloat)radius corners:(UIRectCorner)corners;
-
 -(void)xy_topConstraintToSuperWithConstraintValue:(CGFloat)constraintValue;
 -(void)xy_bottomConstraintToSuperWithConstraintValue:(CGFloat)constraintValue;
 -(void)xy_leftConstraintToSuperWithConstraintValue:(CGFloat)constraintValue;
@@ -38,8 +34,13 @@
 -(void)xy_leftConstraintToObjectRight:(UIView*)objectView constraintValue:(CGFloat)constraintValue;
 -(void)xy_rightConstraintToObjectLeft:(UIView*)objectView constraintValue:(CGFloat)constraintValue;
 
+-(void)xy_removeAllSubViews;
+
+-(void)xy_setMulCornerWithRadius:(CGFloat)radius corners:(UIRectCorner)corners;
+
 -(void)xy_transformAngle:(CGFloat)angle;
 
+-(void)xy_showMsg:(NSString*)msg endTime:(NSInteger)endTime;
 @end
 
 
