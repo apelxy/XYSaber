@@ -72,7 +72,7 @@
         [self.contentView addSubview:self.loadingView];
         self.loadingView.y = 10;
         self.contentView.height = self.loadingView.maxY+10;
-        self.contentView.width = self.loadingView.width+30;
+        self.contentView.width = self.loadingView.width+60;
         self.loadingView.midX = self.contentView.width / 2;
     }
     
