@@ -38,6 +38,10 @@
 		89102ECB23AB92BC00DA5718 /* XYDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = 89102EC923AB92BC00DA5718 /* XYDevice.m */; };
 		8960B59D23ACF38300AA4B31 /* XYNet.h in Headers */ = {isa = PBXBuildFile; fileRef = 8960B59B23ACF38300AA4B31 /* XYNet.h */; };
 		8960B59E23ACF38300AA4B31 /* XYNet.m in Sources */ = {isa = PBXBuildFile; fileRef = 8960B59C23ACF38300AA4B31 /* XYNet.m */; };
+		89EF002123B089C900192A75 /* XYHint.h in Headers */ = {isa = PBXBuildFile; fileRef = 89EF001D23B089C900192A75 /* XYHint.h */; };
+		89EF002223B089C900192A75 /* XYTimer.h in Headers */ = {isa = PBXBuildFile; fileRef = 89EF001E23B089C900192A75 /* XYTimer.h */; };
+		89EF002323B089C900192A75 /* XYTimer.m in Sources */ = {isa = PBXBuildFile; fileRef = 89EF001F23B089C900192A75 /* XYTimer.m */; };
+		89EF002423B089C900192A75 /* XYHint.m in Sources */ = {isa = PBXBuildFile; fileRef = 89EF002023B089C900192A75 /* XYHint.m */; };
 		89EFFFBE23B05DBD00192A75 /* UITextField+XY.h in Headers */ = {isa = PBXBuildFile; fileRef = 89EFFFBC23B05DBD00192A75 /* UITextField+XY.h */; };
 		89EFFFBF23B05DBE00192A75 /* UITextField+XY.m in Sources */ = {isa = PBXBuildFile; fileRef = 89EFFFBD23B05DBD00192A75 /* UITextField+XY.m */; };
 /* End PBXBuildFile section */
@@ -76,6 +80,10 @@
 		8960B59C23ACF38300AA4B31 /* XYNet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XYNet.m; sourceTree = "<group>"; };
 		89B23C9023AB6B80004AD1FC /* XYSaber.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = XYSaber.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		89B23C9423AB6B80004AD1FC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		89EF001D23B089C900192A75 /* XYHint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYHint.h; sourceTree = "<group>"; };
+		89EF001E23B089C900192A75 /* XYTimer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYTimer.h; sourceTree = "<group>"; };
+		89EF001F23B089C900192A75 /* XYTimer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XYTimer.m; sourceTree = "<group>"; };
+		89EF002023B089C900192A75 /* XYHint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XYHint.m; sourceTree = "<group>"; };
 		89EFFFBC23B05DBD00192A75 /* UITextField+XY.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITextField+XY.h"; sourceTree = "<group>"; };
 		89EFFFBD23B05DBD00192A75 /* UITextField+XY.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITextField+XY.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -115,6 +123,10 @@
 				89102EAB23AB91DD00DA5718 /* NSObject+XY.m */,
 				89102E9323AB91DC00DA5718 /* UIAlertController+XY.h */,
 				89102E9223AB91DC00DA5718 /* UIAlertController+XY.m */,
+				89EF001D23B089C900192A75 /* XYHint.h */,
+				89EF002023B089C900192A75 /* XYHint.m */,
+				89EF001E23B089C900192A75 /* XYTimer.h */,
+				89EF001F23B089C900192A75 /* XYTimer.m */,
 				89102EA023AB91DC00DA5718 /* UIButton+XY.h */,
 				89102EA723AB91DD00DA5718 /* UIButton+XY.m */,
 				89102E9423AB91DC00DA5718 /* UIColor+XY.h */,
@@ -171,7 +183,9 @@
 				89102EB623AB91DE00DA5718 /* UIView+XY.h in Headers */,
 				89102EB823AB91DE00DA5718 /* XYObjectSupport.h in Headers */,
 				89102EB223AB91DE00DA5718 /* UIScrollView+XY.h in Headers */,
+				89EF002123B089C900192A75 /* XYHint.h in Headers */,
 				89102EBC23AB91DE00DA5718 /* UILabel+XY.h in Headers */,
+				89EF002223B089C900192A75 /* XYTimer.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -248,6 +262,8 @@
 				89102EB723AB91DE00DA5718 /* XYButtonSupport.m in Sources */,
 				89102EC123AB91DE00DA5718 /* UIButton+XY.m in Sources */,
 				89102EB923AB91DE00DA5718 /* UIColor+XY.m in Sources */,
+				89EF002423B089C900192A75 /* XYHint.m in Sources */,
+				89EF002323B089C900192A75 /* XYTimer.m in Sources */,
 				89102EBD23AB91DE00DA5718 /* XYApp.m in Sources */,
 				89102EB423AB91DE00DA5718 /* XYViewSupport.m in Sources */,
 				89102EB323AB91DE00DA5718 /* UIImage+XY.m in Sources */,
