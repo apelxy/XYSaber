@@ -8,8 +8,9 @@
 
 #import "UITableViewCell+XY.h"
 #import <objc/runtime.h>
-#import "XYKit.h"
-
+#import "XYHeader.h"
+#import "UIView+XY.h"
+#import "NSObject+XY.h"
 
 @interface SlideBackView : UIView
 @end
