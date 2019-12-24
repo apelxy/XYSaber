@@ -16,6 +16,7 @@ typedef void(^ActionHandler)(NSInteger index);
 @property (nonatomic,strong) UIView *backView;
 @property (nonatomic,strong) NSMutableArray *itemArray;
 @property (nonatomic,assign) NSInteger currentIndex;
+@property (nonatomic,assign) CGFloat defaultContentOffSet;
 @end
 
 @implementation UITableView (IndexView)
@@ -40,14 +41,14 @@ typedef void(^ActionHandler)(NSInteger index);
     tap.minimumPressDuration = .01;
     [self.backView addGestureRecognizer:tap];
     
-
+    self.defaultContentOffSet = -99999;
     [self xy_addObserveWithKeyPath:@"contentOffset" options:NSKeyValueObservingOptionNew context:nil handler:^(id  _Nonnull value, void * _Nullable context) {
         NSValue *pointValue = value;
         CGPoint point = pointValue.CGPointValue;
 //        NSLog(@"%f",point.y);
         
         NSInteger nowSection = -1;
-        NSIndexPath *indexPath = [self indexPathForRowAtPoint:CGPointMake(0, point.y+20)];
+        NSIndexPath *indexPath = [self indexPathForRowAtPoint:CGPointMake(0, point.y - self.defaultContentOffSet)];
         nowSection = indexPath.section;
 
 //        NSLog(@"%ld--%ld",nowSection,self.currentIndex);
@@ -56,8 +57,13 @@ typedef void(^ActionHandler)(NSInteger index);
             actionHandler(nowSection);
         }
         
+        if (self.contentOffset.y != 0 && self.defaultContentOffSet == -99999) {
+            self.defaultContentOffSet = self.contentOffset.y;
+        }
     }];
     actionHandler(0);
+
+    //    [self scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:NO];
 }
 -(void)tapAct:(UIGestureRecognizer*)ges{
 
@@ -92,5 +98,12 @@ static NSString *currentIndex_id = nil;
 }
 -(NSInteger)currentIndex{
     return [objc_getAssociatedObject(self, &currentIndex_id)integerValue];
+}
+static NSString *defaultContentOffSet_id = nil;
+-(void)setDefaultContentOffSet:(CGFloat)defaultContentOffSet{
+    objc_setAssociatedObject(self, &defaultContentOffSet_id, [NSString stringWithFormat:@"%f",defaultContentOffSet], OBJC_ASSOCIATION_COPY_NONATOMIC);
+}
+-(CGFloat)defaultContentOffSet{
+    return [objc_getAssociatedObject(self, &defaultContentOffSet_id) floatValue];
 }
 @end
