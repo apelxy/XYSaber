@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 
 typedef void(^XYNotificationBlock)(NSNotification *notification);
-typedef void(^XYObserveBlock)(id value,void * _Nullable context);
+typedef void(^XYObserveBlock)(NSDictionary<NSKeyValueChangeKey,id> *change);
 
 @interface XYObjectSupport : NSObject
 

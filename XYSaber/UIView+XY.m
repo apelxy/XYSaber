@@ -180,7 +180,13 @@ static UIColor *borderColor_id = nil;
 }
 
 
-
+//显示提示信息
+-(void)xy_showMsg:(NSString*)msg endTime:(NSInteger)endTime{
+    
+    XYHint *hint = [[XYHint alloc]initWithView:self message:msg loading:NO];
+    hint.endTime = endTime;
+    [hint show];
+}
 
 -(void)xy_setMulCornerWithRadius:(CGFloat)radius corners:(UIRectCorner)corners{
     
@@ -224,7 +230,7 @@ static UIColor *borderColor_id = nil;
     }
     
     objc_setAssociatedObject(self, &xy_topConstraintToSuper_id, @"1", OBJC_ASSOCIATION_COPY_NONATOMIC);
-    [self.superview xy_addObserveWithKeyPath:@"frame" options:NSKeyValueObservingOptionNew context:nil handler:^(id value, void * _Nullable context) {
+    [self.superview xy_addObserveWithKeyPath:@"frame" options:NSKeyValueObservingOptionNew handler:^(NSDictionary<NSKeyValueChangeKey,id> * _Nonnull change) {
         if ([objc_getAssociatedObject(self, &xy_bottomConstraintToSuper_id)integerValue]) {
             CGFloat newY = 0 + constraintValue;
             self.height = self.maxY - newY;
@@ -245,7 +251,7 @@ static UIColor *borderColor_id = nil;
     }
     
     objc_setAssociatedObject(self, &xy_bottomConstraintToSuper_id, @"1", OBJC_ASSOCIATION_COPY_NONATOMIC);
-    [self.superview xy_addObserveWithKeyPath:@"frame" options:NSKeyValueObservingOptionNew context:nil handler:^(id value, void * _Nullable context) {
+    [self.superview xy_addObserveWithKeyPath:@"frame" options:NSKeyValueObservingOptionNew handler:^(NSDictionary<NSKeyValueChangeKey,id> * _Nonnull change) {
         if ([objc_getAssociatedObject(self, &xy_topConstraintToSuper_id)integerValue]) {
             CGFloat newMaxY = self.superview.height - constraintValue;
             self.height = newMaxY - self.y;
@@ -266,7 +272,7 @@ static UIColor *borderColor_id = nil;
     }
     
     objc_setAssociatedObject(self, &xy_leftConstraintToSuper_id, @"1", OBJC_ASSOCIATION_COPY_NONATOMIC);
-    [self.superview xy_addObserveWithKeyPath:@"frame" options:NSKeyValueObservingOptionNew context:nil handler:^(id value, void * _Nullable context) {
+    [self.superview xy_addObserveWithKeyPath:@"frame" options:NSKeyValueObservingOptionNew handler:^(NSDictionary<NSKeyValueChangeKey,id> * _Nonnull change) {
         if ([objc_getAssociatedObject(self, &xy_rightConstraintToSuper_id)integerValue]) {
             CGFloat newX = 0 + constraintValue;
             self.width = self.maxX - newX;
@@ -287,7 +293,7 @@ static UIColor *borderColor_id = nil;
     }
     
     objc_setAssociatedObject(self, &xy_rightConstraintToSuper_id, @"1", OBJC_ASSOCIATION_COPY_NONATOMIC);
-    [self.superview xy_addObserveWithKeyPath:@"frame" options:NSKeyValueObservingOptionNew context:nil handler:^(id value, void * _Nullable context) {
+    [self.superview xy_addObserveWithKeyPath:@"frame" options:NSKeyValueObservingOptionNew handler:^(NSDictionary<NSKeyValueChangeKey,id> * _Nonnull change) {
         if ([objc_getAssociatedObject(self, &xy_leftConstraintToSuper_id)integerValue]) {
             CGFloat newMaxX = self.superview.width - constraintValue;
             self.width = newMaxX - self.x;
@@ -309,7 +315,7 @@ static UIColor *borderColor_id = nil;
     }
     
     objc_setAssociatedObject(self, &xy_topConstraintToObjectBottom_id, @"1", OBJC_ASSOCIATION_COPY_NONATOMIC);
-    [objectView xy_addObserveWithKeyPath:@"frame" options:NSKeyValueObservingOptionNew context:nil handler:^(id value, void * _Nullable context) {
+    [objectView xy_addObserveWithKeyPath:@"frame" options:NSKeyValueObservingOptionNew handler:^(NSDictionary<NSKeyValueChangeKey,id> * _Nonnull change) {
         if ([objc_getAssociatedObject(self, &xy_bottomConstraintToObjectTop_id)integerValue]) {
             CGFloat newY = objectView.maxY + constraintValue;
             self.height = self.maxY - newY;
@@ -330,7 +336,7 @@ static UIColor *borderColor_id = nil;
     }
     self.maxY = objectView.y - constraintValue;
     objc_setAssociatedObject(self, &xy_bottomConstraintToObjectTop_id, @"1", OBJC_ASSOCIATION_COPY_NONATOMIC);
-    [objectView xy_addObserveWithKeyPath:@"frame" options:NSKeyValueObservingOptionNew context:nil handler:^(id value, void * _Nullable context) {
+    [objectView xy_addObserveWithKeyPath:@"frame" options:NSKeyValueObservingOptionNew handler:^(NSDictionary<NSKeyValueChangeKey,id> * _Nonnull change) {
         if ([objc_getAssociatedObject(self,&xy_topConstraintToObjectBottom_id)integerValue]) {
             CGFloat newMaxY = objectView.y - constraintValue;
             self.height = newMaxY - self.y;
@@ -351,7 +357,7 @@ static UIColor *borderColor_id = nil;
     }
     
     objc_setAssociatedObject(self, &xy_leftConstraintToObjectRight_id, @"1", OBJC_ASSOCIATION_COPY_NONATOMIC);
-    [objectView xy_addObserveWithKeyPath:@"frame" options:NSKeyValueObservingOptionNew context:nil handler:^(id value, void * _Nullable context) {
+    [objectView xy_addObserveWithKeyPath:@"frame" options:NSKeyValueObservingOptionNew handler:^(NSDictionary<NSKeyValueChangeKey,id> * _Nonnull change) {
         if ([objc_getAssociatedObject(self, &xy_rightConstraintToObjectLeft_id)integerValue]) {
             CGFloat newX = objectView.maxX + constraintValue;
             self.width = self.maxX - newX;
@@ -372,7 +378,7 @@ static UIColor *borderColor_id = nil;
     }
     
     objc_setAssociatedObject(self, &xy_rightConstraintToObjectLeft_id, @"1", OBJC_ASSOCIATION_COPY_NONATOMIC);
-    [objectView xy_addObserveWithKeyPath:@"frame" options:NSKeyValueObservingOptionNew context:nil handler:^(id value, void * _Nullable context) {
+    [objectView xy_addObserveWithKeyPath:@"frame" options:NSKeyValueObservingOptionNew handler:^(NSDictionary<NSKeyValueChangeKey,id> * _Nonnull change) {
         if ([objc_getAssociatedObject(self, &xy_leftConstraintToObjectRight_id)integerValue]) {
             CGFloat newMaxX = objectView.x - constraintValue;
             self.width = newMaxX - self.x;
@@ -388,12 +394,5 @@ static UIColor *borderColor_id = nil;
     self.transform = CGAffineTransformMakeRotation(M_PI * angle / 180);
 }
 
-//显示提示信息
--(void)xy_showMsg:(NSString*)msg endTime:(NSInteger)endTime{
-    
-    XYHint *hint = [[XYHint alloc]initWithView:self message:msg loading:NO];
-    hint.endTime = endTime;
-    [hint show];
-}
 
 @end

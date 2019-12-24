@@ -11,11 +11,13 @@
 
 typedef void(^XYScrollViewPullActivityBlock)(void);
 
+
 @interface UIScrollView (XY)
 
 -(void)xy_addPullDownWithActivityHeight:(CGFloat)activityHeight animationViewHandler:(void(^)(UIView* animationView))animationViewHandler cannotActivateHandler:(void(^)(void))cannotActivateHandler canActivateHandler:(void(^)(void))canActivateHandler activityHandler:(XYScrollViewPullActivityBlock)activityHandler;
 -(void)xy_beginPullDownActivity;
 -(void)xy_endPullDownActivity;
+
 
 
 -(void)xy_addPullUpWithActivityHeight:(CGFloat)activityHeight animationViewHandler:(void(^)(UIView* animationView))animationViewHandler cannotActivateHandler:(void(^)(void))cannotActivateHandler canActivateHandler:(void(^)(void))canActivateHandler  activityHandler:(XYScrollViewPullActivityBlock)activityHandler;

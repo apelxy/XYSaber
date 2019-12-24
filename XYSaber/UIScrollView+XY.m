@@ -130,8 +130,8 @@ static NSString *pullUpActivited_id = nil;
     [self addGestureRecognizer:panGes];
     
     setWeakSelf
-    [self xy_addObserveWithKeyPath:@"contentOffset" options:NSKeyValueObservingOptionNew context:nil handler:^(id value, void * _Nullable context) {
-        NSValue *pointValue = value;
+    [self xy_addObserveWithKeyPath:@"contentOffset" options:NSKeyValueObservingOptionNew handler:^(NSDictionary<NSKeyValueChangeKey,id> * _Nonnull change) {
+        NSValue *pointValue = change[@"new"];
         CGPoint point = pointValue.CGPointValue;
         
         
@@ -145,7 +145,6 @@ static NSString *pullUpActivited_id = nil;
                 canActivateHandler();
             }
         }
-        
     }];
 }
 
@@ -274,8 +273,8 @@ static NSString *pullUpActivited_id = nil;
     [self addGestureRecognizer:panGes];
     
     setWeakSelf
-    [self xy_addObserveWithKeyPath:@"contentOffset" options:NSKeyValueObservingOptionNew context:nil handler:^(id value, void * _Nullable context) {
-        NSValue *pointValue = value;
+    [self xy_addObserveWithKeyPath:@"contentOffset" options:NSKeyValueObservingOptionNew handler:^(NSDictionary<NSKeyValueChangeKey,id> * _Nonnull change) {
+        NSValue *pointValue = change[@"new"];
         CGPoint point = pointValue.CGPointValue;
 
         if (point.y > self.contentSize.height - self.height && ![objc_getAssociatedObject(weakSelf, &pullUpActivited_id)integerValue]) {
@@ -288,7 +287,6 @@ static NSString *pullUpActivited_id = nil;
                 canActivateHandler();
             }
         }
-        
     }];
 }
 -(void)pullUpGes:(UIGestureRecognizer*)ges{

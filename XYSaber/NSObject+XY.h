@@ -18,9 +18,11 @@ NS_ASSUME_NONNULL_BEGIN
 +(instancetype)xy_objectWithDictionary:(NSDictionary*)aDictionary;
 +(instancetype)xy_objectWithDictionary:(NSDictionary*)aDictionary map:(NSDictionary*)map;
 
+-(void)xy_lazyLoad;
+
 -(void)xy_addObserveWithName:(NSString*)name activate:(void(^)(NSNotification *notification))activate;
 
--(void)xy_addObserveWithKeyPath:(NSString*)keyPath options:(NSKeyValueObservingOptions)options context:(nullable void *)context handler:(void(^)(id value,void * _Nullable context))handler;
+-(void)xy_addObserveWithKeyPath:(NSString*)keyPath options:(NSKeyValueObservingOptions)options handler:(void(^)(NSDictionary<NSKeyValueChangeKey,id> *change))handler;
 
 @end
 

@@ -58,7 +58,7 @@ static XYObjectSupport *objectSupport_id = nil;
 
 
 
--(void)xy_addObserveWithKeyPath:(NSString*)keyPath options:(NSKeyValueObservingOptions)options context:(nullable void *)context handler:(XYObserveBlock)handler{
+-(void)xy_addObserveWithKeyPath:(NSString*)keyPath options:(NSKeyValueObservingOptions)options handler:(XYObserveBlock)handler{
     
     BOOL hasKeyPath = NO;
     
@@ -71,7 +71,7 @@ static XYObjectSupport *objectSupport_id = nil;
     }
     
     if (!hasKeyPath) {
-        [self addObserver:self.objectSupport forKeyPath:keyPath options:options context:context];
+        [self addObserver:self.objectSupport forKeyPath:keyPath options:options context:nil];
     }
     
     NSDictionary *dic = @{
@@ -107,6 +107,9 @@ static XYObjectSupport *objectSupport_id = nil;
     return [self xy_objectWithDictionary:[mulDic copy]];
 }
 
+
+#pragma mark 激活懒加载=======================================================
+-(void)xy_lazyLoad{}
 
 -(NSDictionary*)xy_properties{
     return [self getAllPropertysWithObject:self];

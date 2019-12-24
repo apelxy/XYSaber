@@ -8,8 +8,7 @@
 
 #import "UITableView+IndexView.h"
 #import <objc/runtime.h>
-#import "UIView+XY.h"
-#import "NSObject+XY.h"
+
 typedef void(^ActionHandler)(NSInteger index);
 
 @interface UITableView ()
@@ -17,14 +16,22 @@ typedef void(^ActionHandler)(NSInteger index);
 @property (nonatomic,strong) NSMutableArray *itemArray;
 @property (nonatomic,assign) NSInteger currentIndex;
 @property (nonatomic,assign) CGFloat defaultContentOffSet;
+@property (nonatomic,copy) ActionHandler actHandler;
+@property (nonatomic,assign) NSInteger backNum;
 @end
 
 @implementation UITableView (IndexView)
 -(void)setIndexViewWithSize:(CGSize)size itemCount:(NSInteger)itemCount  layoutHandler:(void(^)(UIView *indexView,NSArray<UIView*>* items))layoutHandler actionHandler:(void(^)(NSInteger index))actionHandler{
+    
+    self.actHandler = actionHandler;
+    [self.backView removeFromSuperview];
+    self.currentIndex = 0;
+//    self.backNum = 0;
     self.itemArray = [NSMutableArray array];
-    self.backView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, size.width, size.height)];
-    self.backView.maxX = self.maxX;
-    self.backView.midY = self.midY;
+    
+    self.backView = [[UIView alloc]initWithFrame:CGRectMake(CGRectGetMinX(self.frame) + (CGRectGetWidth(self.frame) - size.width), CGRectGetMinY(self.frame) + (CGRectGetHeight(self.frame)-size.height)/2, size.width, size.height)];
+//    self.backView.maxX = self.maxX;
+//    self.backView.midY = self.midY;
     [self.superview addSubview:self.backView];
     
     CGFloat itemWith = size.width;
@@ -40,36 +47,42 @@ typedef void(^ActionHandler)(NSInteger index);
     UILongPressGestureRecognizer *tap = [[UILongPressGestureRecognizer alloc]initWithTarget:self action:@selector(tapAct:)];
     tap.minimumPressDuration = .01;
     [self.backView addGestureRecognizer:tap];
-    
-    self.defaultContentOffSet = -99999;
-    [self xy_addObserveWithKeyPath:@"contentOffset" options:NSKeyValueObservingOptionNew context:nil handler:^(id  _Nonnull value, void * _Nullable context) {
-        NSValue *pointValue = value;
-        CGPoint point = pointValue.CGPointValue;
-//        NSLog(@"%f",point.y);
         
-        NSInteger nowSection = -1;
-        NSIndexPath *indexPath = [self indexPathForRowAtPoint:CGPointMake(0, point.y - self.defaultContentOffSet)];
-        nowSection = indexPath.section;
+    [self addObserver:self forKeyPath:@"contentOffset" options:NSKeyValueObservingOptionNew context:nil];
 
-//        NSLog(@"%ld--%ld",nowSection,self.currentIndex);
-        if (self.currentIndex != nowSection) {
-            self.currentIndex = nowSection;
-            actionHandler(nowSection);
-        }
-        
-        if (self.contentOffset.y != 0 && self.defaultContentOffSet == -99999) {
-            self.defaultContentOffSet = self.contentOffset.y;
-        }
-    }];
     actionHandler(0);
-
-    //    [self scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:NO];
+    
 }
+
+-(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context{
+
+    NSValue *pointValue = change[@"new"];
+    CGPoint point = pointValue.CGPointValue;
+    //        NSLog(@"%f",point.y);
+    
+    NSInteger nowSection = -1;
+    NSIndexPath *indexPath = [self indexPathForRowAtPoint:CGPointMake(0, point.y - self.defaultContentOffSet)];
+    nowSection = indexPath.section;
+
+    //        NSLog(@"%ld--%ld",nowSection,self.currentIndex);
+    if (self.currentIndex != nowSection) {
+        self.currentIndex = nowSection;
+        self.actHandler(nowSection);
+    }
+            
+            
+    if (self.backNum == 1) {
+        self.defaultContentOffSet = self.contentOffset.y;
+    }
+    self.backNum++;
+    
+}
+
 -(void)tapAct:(UIGestureRecognizer*)ges{
 
     CGPoint point = [ges locationInView:self.backView];
 //    NSLog(@"%f",point.y);
-    CGFloat itemHeight = self.backView.height / self.backView.subviews.count;
+    CGFloat itemHeight = CGRectGetHeight(self.backView.frame) / self.backView.subviews.count;
     NSInteger index = point.y / itemHeight;
     if (index >= 0 && index < self.numberOfSections ) {
         [self scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:index] atScrollPosition:UITableViewScrollPositionTop animated:NO];
@@ -91,7 +104,6 @@ static NSMutableArray *itemArray_id = nil;
 -(NSMutableArray*)itemArray{
     return objc_getAssociatedObject(self, &itemArray_id);
 }
-
 static NSString *currentIndex_id = nil;
 -(void)setCurrentIndex:(NSInteger)currentIndex{
     objc_setAssociatedObject(self, &currentIndex_id, [NSString stringWithFormat:@"%ld",(long)currentIndex], OBJC_ASSOCIATION_COPY_NONATOMIC);
@@ -105,5 +117,19 @@ static NSString *defaultContentOffSet_id = nil;
 }
 -(CGFloat)defaultContentOffSet{
     return [objc_getAssociatedObject(self, &defaultContentOffSet_id) floatValue];
+}
+static NSString *actHandler_id = nil;
+-(void)setActHandler:(ActionHandler)actHandler{
+    objc_setAssociatedObject(self, &actHandler_id, actHandler, OBJC_ASSOCIATION_COPY_NONATOMIC);
+}
+-(ActionHandler)actHandler{
+    return objc_getAssociatedObject(self, &actHandler_id);
+}
+static NSString *backNum_id = nil;
+-(void)setBackNum:(NSInteger)backNum{
+    objc_setAssociatedObject(self, &backNum_id, [NSString stringWithFormat:@"%ld",(long)backNum], OBJC_ASSOCIATION_COPY_NONATOMIC);
+}
+-(NSInteger)backNum{
+    return [objc_getAssociatedObject(self, &backNum_id)integerValue];
 }
 @end

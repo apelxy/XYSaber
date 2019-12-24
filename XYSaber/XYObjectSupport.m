@@ -26,7 +26,7 @@
         NSString *na = self.observeArray[i][@"name"];
         if ([keyPath isEqualToString:na]) {
             XYObserveBlock bl = self.observeArray[i][@"block"];
-            bl(change[@"new"],context);
+            bl(change);
         }
     }
 }
