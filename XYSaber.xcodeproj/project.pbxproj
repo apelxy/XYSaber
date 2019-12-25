@@ -46,6 +46,10 @@
 		893DB25A23B0A60A00DF9CE8 /* XYTableViewSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = 893DB25423B0A60A00DF9CE8 /* XYTableViewSupport.m */; };
 		8960B59D23ACF38300AA4B31 /* XYNet.h in Headers */ = {isa = PBXBuildFile; fileRef = 8960B59B23ACF38300AA4B31 /* XYNet.h */; };
 		8960B59E23ACF38300AA4B31 /* XYNet.m in Sources */ = {isa = PBXBuildFile; fileRef = 8960B59C23ACF38300AA4B31 /* XYNet.m */; };
+		89A1460F23B32CE700B2DE57 /* UICollectionView+XY.m in Sources */ = {isa = PBXBuildFile; fileRef = 89A1460B23B32CE700B2DE57 /* UICollectionView+XY.m */; };
+		89A1461023B32CE700B2DE57 /* UICollectionViewCell+XY.m in Sources */ = {isa = PBXBuildFile; fileRef = 89A1460C23B32CE700B2DE57 /* UICollectionViewCell+XY.m */; };
+		89A1461123B32CE700B2DE57 /* UICollectionViewCell+XY.h in Headers */ = {isa = PBXBuildFile; fileRef = 89A1460D23B32CE700B2DE57 /* UICollectionViewCell+XY.h */; };
+		89A1461223B32CE700B2DE57 /* UICollectionView+XY.h in Headers */ = {isa = PBXBuildFile; fileRef = 89A1460E23B32CE700B2DE57 /* UICollectionView+XY.h */; };
 		89EF002123B089C900192A75 /* XYHint.h in Headers */ = {isa = PBXBuildFile; fileRef = 89EF001D23B089C900192A75 /* XYHint.h */; };
 		89EF002223B089C900192A75 /* XYTimer.h in Headers */ = {isa = PBXBuildFile; fileRef = 89EF001E23B089C900192A75 /* XYTimer.h */; };
 		89EF002323B089C900192A75 /* XYTimer.m in Sources */ = {isa = PBXBuildFile; fileRef = 89EF001F23B089C900192A75 /* XYTimer.m */; };
@@ -94,6 +98,10 @@
 		893DB25423B0A60A00DF9CE8 /* XYTableViewSupport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XYTableViewSupport.m; sourceTree = "<group>"; };
 		8960B59B23ACF38300AA4B31 /* XYNet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYNet.h; sourceTree = "<group>"; };
 		8960B59C23ACF38300AA4B31 /* XYNet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XYNet.m; sourceTree = "<group>"; };
+		89A1460B23B32CE700B2DE57 /* UICollectionView+XY.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UICollectionView+XY.m"; sourceTree = "<group>"; };
+		89A1460C23B32CE700B2DE57 /* UICollectionViewCell+XY.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UICollectionViewCell+XY.m"; sourceTree = "<group>"; };
+		89A1460D23B32CE700B2DE57 /* UICollectionViewCell+XY.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UICollectionViewCell+XY.h"; sourceTree = "<group>"; };
+		89A1460E23B32CE700B2DE57 /* UICollectionView+XY.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UICollectionView+XY.h"; sourceTree = "<group>"; };
 		89B23C9023AB6B80004AD1FC /* XYSaber.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = XYSaber.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		89B23C9423AB6B80004AD1FC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		89EF001D23B089C900192A75 /* XYHint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYHint.h; sourceTree = "<group>"; };
@@ -143,6 +151,10 @@
 				893DB24F23B0A60900DF9CE8 /* UITableView+XY.m */,
 				893DB25023B0A60900DF9CE8 /* UITableViewCell+XY.h */,
 				893DB25123B0A60A00DF9CE8 /* UITableViewCell+XY.m */,
+				89A1460E23B32CE700B2DE57 /* UICollectionView+XY.h */,
+				89A1460B23B32CE700B2DE57 /* UICollectionView+XY.m */,
+				89A1460D23B32CE700B2DE57 /* UICollectionViewCell+XY.h */,
+				89A1460C23B32CE700B2DE57 /* UICollectionViewCell+XY.m */,
 				893DB25323B0A60A00DF9CE8 /* XYTableViewSupport.h */,
 				893DB25423B0A60A00DF9CE8 /* XYTableViewSupport.m */,
 				89242B6C23B0FF87003B89D8 /* UITableView+IndexView.h */,
@@ -191,6 +203,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				89A1461123B32CE700B2DE57 /* UICollectionViewCell+XY.h in Headers */,
 				89102EB523AB91DE00DA5718 /* XYButtonSupport.h in Headers */,
 				89102EBF23AB91DE00DA5718 /* XYTabBarController.h in Headers */,
 				89102EBA23AB91DE00DA5718 /* UIButton+XY.h in Headers */,
@@ -214,6 +227,7 @@
 				89EF002123B089C900192A75 /* XYHint.h in Headers */,
 				89102EBC23AB91DE00DA5718 /* UILabel+XY.h in Headers */,
 				89EF002223B089C900192A75 /* XYTimer.h in Headers */,
+				89A1461223B32CE700B2DE57 /* UICollectionView+XY.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -295,6 +309,7 @@
 				89242B6F23B0FF87003B89D8 /* UITableView+IndexView.m in Sources */,
 				89102EBD23AB91DE00DA5718 /* XYApp.m in Sources */,
 				893DB25723B0A60A00DF9CE8 /* UITableViewCell+XY.m in Sources */,
+				89A1460F23B32CE700B2DE57 /* UICollectionView+XY.m in Sources */,
 				89102EB423AB91DE00DA5718 /* XYViewSupport.m in Sources */,
 				89102EB323AB91DE00DA5718 /* UIImage+XY.m in Sources */,
 				89102EC223AB91DE00DA5718 /* UIView+XY.m in Sources */,
@@ -305,6 +320,7 @@
 				89102EAC23AB91DE00DA5718 /* UIAlertController+XY.m in Sources */,
 				89102EB023AB91DE00DA5718 /* UILabel+XY.m in Sources */,
 				89EFFFBF23B05DBE00192A75 /* UITextField+XY.m in Sources */,
+				89A1461023B32CE700B2DE57 /* UICollectionViewCell+XY.m in Sources */,
 				89102EB123AB91DE00DA5718 /* XYObjectSupport.m in Sources */,
 				893DB25523B0A60A00DF9CE8 /* UITableView+XY.m in Sources */,
 			);
