@@ -7,12 +7,13 @@
 //
 
 #import "UICollectionView+XY.h"
-#import "XYKit.h"
+#import "XYHeader.h"
 #import <objc/runtime.h>
-
+#import "XYDevice.h"
+#import "UIView+XY.h"
 @implementation XYCollectionHeaderView
 -(instancetype)initWithHeight:(CGFloat)height reuseIdentifier:(NSString*)reuseIdentifier{
-    self = [super initWithFrame:CGRectMake(0, 0, xy_kWidth, height)];
+    self = [super initWithFrame:CGRectMake(0, 0, XYDevice.screenWidth, XYDevice.screenHeight)];
     if (self) {
         self.reuseIdentifier = reuseIdentifier;
     }
@@ -22,7 +23,7 @@
 
 @implementation XYCollectionFooterView
 -(instancetype)initWithHeight:(CGFloat)height reuseIdentifier:(NSString*)reuseIdentifier{
-    self = [super initWithFrame:CGRectMake(0, 0, xy_kWidth, height)];
+    self = [super initWithFrame:CGRectMake(0, 0, XYDevice.screenWidth, XYDevice.screenHeight)];
     if (self) {
         self.reuseIdentifier = reuseIdentifier;
     }
