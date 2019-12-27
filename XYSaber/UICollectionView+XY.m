@@ -7,13 +7,12 @@
 //
 
 #import "UICollectionView+XY.h"
-#import "XYHeader.h"
+#import "XYKit.h"
 #import <objc/runtime.h>
-#import "XYDevice.h"
-#import "UIView+XY.h"
+
 @implementation XYCollectionHeaderView
 -(instancetype)initWithHeight:(CGFloat)height reuseIdentifier:(NSString*)reuseIdentifier{
-    self = [super initWithFrame:CGRectMake(0, 0, XYDevice.screenWidth, height)];
+    self = [super initWithFrame:CGRectMake(0, 0, xy_kWidth, height)];
     if (self) {
         self.reuseIdentifier = reuseIdentifier;
     }
@@ -23,14 +22,13 @@
 
 @implementation XYCollectionFooterView
 -(instancetype)initWithHeight:(CGFloat)height reuseIdentifier:(NSString*)reuseIdentifier{
-    self = [super initWithFrame:CGRectMake(0, 0, XYDevice.screenWidth, height)];
+    self = [super initWithFrame:CGRectMake(0, 0, xy_kWidth, height)];
     if (self) {
         self.reuseIdentifier = reuseIdentifier;
     }
     return self;
 }
 @end
-
 
 @interface UICollectionView ()<UICollectionViewDataSource,UICollectionViewDelegate>
 @end
@@ -53,10 +51,11 @@ static NSMutableArray *footerViewArray_id = nil;
 
 @implementation UICollectionView (XY)
 
--(void)xy_setDelegateWithHeaderHeight:(CGFloat)headerHeight registerCellIdArray:(NSArray*)registerCellIdArray numOfSectionBlock:(XYCollectionSectionNumBlock)numOfSectionBlock headerBlock:(XYCollectionHeaderBlock)headerBlock footerBlock:(XYCollectionFooterBlock)footerBlock numOfItemsBlock:(XYCollectionItemNumBlock)numOfItemBlock minimumInteritemSpacingBlock:(XYCollectionMinimumInteritemSpacingBlock)minimumInteritemSpacingBlock minimumLineSpacingBlock:(XYCollectionMinimumLineSpacingBlock)minimumLineSpacingBlock itemSizeBlock:(XYCollectionItemSizeBlock)itemSizeBlock cellBlock:(XYCollectionCellBlock)cellBlock didSelectBlock:(XYCollectionDidSelectBlock)didSelectBlock{
+-(void)xy_setDelegateWithHeaderHeight:(CGFloat)headerHeight registerCellClassArray:(NSArray*)registerCellClassArray registerCellIdArray:(NSArray*)registerCellIdArray numOfSectionBlock:(XYCollectionSectionNumBlock)numOfSectionBlock headerBlock:(XYCollectionHeaderBlock)headerBlock footerBlock:(XYCollectionFooterBlock)footerBlock numOfItemsBlock:(XYCollectionItemNumBlock)numOfItemBlock minimumInteritemSpacingBlock:(XYCollectionMinimumInteritemSpacingBlock)minimumInteritemSpacingBlock minimumLineSpacingBlock:(XYCollectionMinimumLineSpacingBlock)minimumLineSpacingBlock itemSizeBlock:(XYCollectionItemSizeBlock)itemSizeBlock cellBlock:(XYCollectionCellBlock)cellBlock didSelectBlock:(XYCollectionDidSelectBlock)didSelectBlock{
     
-    for (NSString *cellId in registerCellIdArray) {
-        [self registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:cellId];
+    for (int i = 0; i < registerCellIdArray.count;i++ ) {
+        NSString *cellId = registerCellIdArray[i];
+        [self registerClass:registerCellClassArray[i] forCellWithReuseIdentifier:cellId];
     }
     
     self.delegate = self;
@@ -134,7 +133,7 @@ static NSMutableArray *footerViewArray_id = nil;
 
     return CGSizeMake(1, footerView.height);
 }
--(NSInteger) collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
     XYCollectionItemNumBlock bl = objc_getAssociatedObject(self, &numOfItemBlock_id);
     return bl(collectionView,section);
 }
@@ -155,7 +154,7 @@ static NSMutableArray *footerViewArray_id = nil;
     CGSize size = bl(collectionView,collectionViewLayout,indexPath);
     return size;
 }
-- (__kindof UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     XYCollectionCellBlock cellBl = objc_getAssociatedObject(self, &cellBlock_id);
     UICollectionViewCell *cell = cellBl(collectionView,indexPath);
     return cell;
