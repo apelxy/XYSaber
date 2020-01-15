@@ -139,65 +139,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		896DCA3823CF04D200CC5CC1 /* GroupUIImageView */ = {
-			isa = PBXGroup;
-			children = (
-				896DCA3A23CF04D200CC5CC1 /* UIImageView+XY.h */,
-				896DCA3B23CF04D200CC5CC1 /* UIImageView+XY.m */,
-				896DCA3C23CF04D200CC5CC1 /* XYImageViewSupport.h */,
-				896DCA3923CF04D200CC5CC1 /* XYImageViewSupport.m */,
-			);
-			path = GroupUIImageView;
-			sourceTree = "<group>";
-		};
-		896DCA4A23CF08CF00CC5CC1 /* GroupUIView */ = {
-			isa = PBXGroup;
-			children = (
-				89102E9C23AB91DC00DA5718 /* UIView+XY.h */,
-				89102EA823AB91DD00DA5718 /* UIView+XY.m */,
-				89102E9523AB91DC00DA5718 /* XYViewSupport.h */,
-				89102E9A23AB91DC00DA5718 /* XYViewSupport.m */,
-			);
-			path = GroupUIView;
-			sourceTree = "<group>";
-		};
-		896DCA4B23CF090300CC5CC1 /* GroupUITableView */ = {
-			isa = PBXGroup;
-			children = (
-				89242B6C23B0FF87003B89D8 /* UITableView+IndexView.h */,
-				89242B6D23B0FF87003B89D8 /* UITableView+IndexView.m */,
-				893DB25223B0A60A00DF9CE8 /* UITableView+XY.h */,
-				893DB24F23B0A60900DF9CE8 /* UITableView+XY.m */,
-				893DB25023B0A60900DF9CE8 /* UITableViewCell+XY.h */,
-				893DB25123B0A60A00DF9CE8 /* UITableViewCell+XY.m */,
-				893DB25323B0A60A00DF9CE8 /* XYTableViewSupport.h */,
-				893DB25423B0A60A00DF9CE8 /* XYTableViewSupport.m */,
-			);
-			path = GroupUITableView;
-			sourceTree = "<group>";
-		};
-		896DCA4C23CF092F00CC5CC1 /* GroupUIButton */ = {
-			isa = PBXGroup;
-			children = (
-				89102EA023AB91DC00DA5718 /* UIButton+XY.h */,
-				89102EA723AB91DD00DA5718 /* UIButton+XY.m */,
-				89102E9B23AB91DC00DA5718 /* XYButtonSupport.h */,
-				89102E9D23AB91DC00DA5718 /* XYButtonSupport.m */,
-			);
-			path = GroupUIButton;
-			sourceTree = "<group>";
-		};
-		896DCA4D23CF097E00CC5CC1 /* GroupNSObject */ = {
-			isa = PBXGroup;
-			children = (
-				89102EA923AB91DD00DA5718 /* NSObject+XY.h */,
-				89102EAB23AB91DD00DA5718 /* NSObject+XY.m */,
-				89102E9E23AB91DC00DA5718 /* XYObjectSupport.h */,
-				89102E9723AB91DC00DA5718 /* XYObjectSupport.m */,
-			);
-			path = GroupNSObject;
-			sourceTree = "<group>";
-		};
 		89B23C8623AB6B80004AD1FC = {
 			isa = PBXGroup;
 			children = (
@@ -217,11 +158,30 @@
 		89B23C9223AB6B80004AD1FC /* XYSaber */ = {
 			isa = PBXGroup;
 			children = (
-				896DCA4D23CF097E00CC5CC1 /* GroupNSObject */,
-				896DCA4C23CF092F00CC5CC1 /* GroupUIButton */,
-				896DCA4B23CF090300CC5CC1 /* GroupUITableView */,
-				896DCA4A23CF08CF00CC5CC1 /* GroupUIView */,
-				896DCA3823CF04D200CC5CC1 /* GroupUIImageView */,
+				89102EA923AB91DD00DA5718 /* NSObject+XY.h */,
+				89102EAB23AB91DD00DA5718 /* NSObject+XY.m */,
+				89102E9E23AB91DC00DA5718 /* XYObjectSupport.h */,
+				89102E9723AB91DC00DA5718 /* XYObjectSupport.m */,
+				89102EA023AB91DC00DA5718 /* UIButton+XY.h */,
+				89102EA723AB91DD00DA5718 /* UIButton+XY.m */,
+				89102E9B23AB91DC00DA5718 /* XYButtonSupport.h */,
+				89102E9D23AB91DC00DA5718 /* XYButtonSupport.m */,
+				89242B6C23B0FF87003B89D8 /* UITableView+IndexView.h */,
+				89242B6D23B0FF87003B89D8 /* UITableView+IndexView.m */,
+				893DB25223B0A60A00DF9CE8 /* UITableView+XY.h */,
+				893DB24F23B0A60900DF9CE8 /* UITableView+XY.m */,
+				893DB25023B0A60900DF9CE8 /* UITableViewCell+XY.h */,
+				893DB25123B0A60A00DF9CE8 /* UITableViewCell+XY.m */,
+				893DB25323B0A60A00DF9CE8 /* XYTableViewSupport.h */,
+				893DB25423B0A60A00DF9CE8 /* XYTableViewSupport.m */,
+				89102E9C23AB91DC00DA5718 /* UIView+XY.h */,
+				89102EA823AB91DD00DA5718 /* UIView+XY.m */,
+				89102E9523AB91DC00DA5718 /* XYViewSupport.h */,
+				89102E9A23AB91DC00DA5718 /* XYViewSupport.m */,
+				896DCA3A23CF04D200CC5CC1 /* UIImageView+XY.h */,
+				896DCA3B23CF04D200CC5CC1 /* UIImageView+XY.m */,
+				896DCA3C23CF04D200CC5CC1 /* XYImageViewSupport.h */,
+				896DCA3923CF04D200CC5CC1 /* XYImageViewSupport.m */,
 				89B23C9423AB6B80004AD1FC /* Info.plist */,
 				896DCA4123CF058500CC5CC1 /* NSThread+XY.h */,
 				896DCA4223CF058500CC5CC1 /* NSThread+XY.m */,
