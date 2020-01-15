@@ -52,7 +52,7 @@
 		896DCA4023CF04D200CC5CC1 /* XYImageViewSupport.h in Headers */ = {isa = PBXBuildFile; fileRef = 896DCA3C23CF04D200CC5CC1 /* XYImageViewSupport.h */; };
 		896DCA4323CF058600CC5CC1 /* NSThread+XY.h in Headers */ = {isa = PBXBuildFile; fileRef = 896DCA4123CF058500CC5CC1 /* NSThread+XY.h */; };
 		896DCA4423CF058600CC5CC1 /* NSThread+XY.m in Sources */ = {isa = PBXBuildFile; fileRef = 896DCA4223CF058500CC5CC1 /* NSThread+XY.m */; };
-		896DCA4723CF059F00CC5CC1 /* XYMedia.h in Headers */ = {isa = PBXBuildFile; fileRef = 896DCA4523CF059F00CC5CC1 /* XYMedia.h */; };
+		896DCA4723CF059F00CC5CC1 /* XYMedia.h in Headers */ = {isa = PBXBuildFile; fileRef = 896DCA4523CF059F00CC5CC1 /* XYMedia.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		896DCA4823CF059F00CC5CC1 /* XYMedia.m in Sources */ = {isa = PBXBuildFile; fileRef = 896DCA4623CF059F00CC5CC1 /* XYMedia.m */; };
 		89A1460F23B32CE700B2DE57 /* UICollectionView+XY.m in Sources */ = {isa = PBXBuildFile; fileRef = 89A1460B23B32CE700B2DE57 /* UICollectionView+XY.m */; };
 		89A1461023B32CE700B2DE57 /* UICollectionViewCell+XY.m in Sources */ = {isa = PBXBuildFile; fileRef = 89A1460C23B32CE700B2DE57 /* UICollectionViewCell+XY.m */; };
@@ -267,6 +267,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				896DCA4723CF059F00CC5CC1 /* XYMedia.h in Headers */,
 				896DCA4323CF058600CC5CC1 /* NSThread+XY.h in Headers */,
 				89A1461123B32CE700B2DE57 /* UICollectionViewCell+XY.h in Headers */,
 				89102EB523AB91DE00DA5718 /* XYButtonSupport.h in Headers */,
@@ -283,7 +284,6 @@
 				89102EC723AB922600DA5718 /* XYMacro.h in Headers */,
 				89102EAE23AB91DE00DA5718 /* UIColor+XY.h in Headers */,
 				89EFFFBE23B05DBD00192A75 /* UITextField+XY.h in Headers */,
-				896DCA4723CF059F00CC5CC1 /* XYMedia.h in Headers */,
 				89102EC023AB91DE00DA5718 /* XYApp.h in Headers */,
 				89102EC323AB91DE00DA5718 /* NSObject+XY.h in Headers */,
 				89102ECA23AB92BC00DA5718 /* XYDevice.h in Headers */,
