@@ -7,7 +7,7 @@
 //
 
 #import "XYTimer.h"
-#import "XYHeader.h"
+#import "XYMacro.h"
 @interface XYTimer ()
 @property (nonatomic,strong) NSTimer *timer;
 @property (nonatomic,assign) NSInteger currentTime;
@@ -30,24 +30,21 @@
 -(void)start{
     if (!self.timer) {
         self.currentTime = 0;
-        setWeakSelf
-        self.timer = [NSTimer scheduledTimerWithTimeInterval:1 repeats:YES block:^(NSTimer * _Nonnull timer) {
-            
-            self.currentTime++;
-            if(weakSelf.endtime && weakSelf.currentTime >= weakSelf.endtime){
-                weakSelf.currentTime = -1;
-                [weakSelf stop];
-            }
-//            if (weakSelf.delegate && [weakSelf.delegate respondsToSelector:@selector(xyTimer_time:)]){
-//                [weakSelf.delegate xyTimer_time:weakSelf.currentTime];
-//            }
-            weakSelf.handler(weakSelf.currentTime);
-            
-        }];
-        [[NSRunLoop currentRunLoop] addTimer:self.timer forMode:NSRunLoopCommonModes];
+
+        self.timer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(timerAct) userInfo:nil repeats:YES];
+//        [[NSRunLoop currentRunLoop] addTimer:self.timer forMode:NSRunLoopCommonModes];
     }else{
         [self.timer setFireDate:[NSDate date]];
     }
+}
+-(void)timerAct{
+    self.currentTime++;
+    if(self.endtime && self.currentTime >= self.endtime){
+        self.currentTime = -1;
+        [self stop];
+    }
+    
+    self.handler(self.currentTime);
 }
 -(void)pause{
     [self.timer setFireDate:[NSDate distantFuture]];

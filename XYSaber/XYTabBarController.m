@@ -8,7 +8,7 @@
 
 #import "XYTabBarController.h"
 #import "UIButton+XY.h"
-#import "XYHeader.h"
+#import "XYMacro.h"
 #import "UIView+XY.h"
 #import "UIColor+XY.h"
 #import "XYDevice.h"

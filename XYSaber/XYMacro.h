@@ -6,8 +6,8 @@
 //  Copyright © 2019 ios. All rights reserved.
 //
 
-#ifndef XYHeader_h
-#define XYHeader_h
+#ifndef XYMacro_h
+#define XYMacro_h
 
 #define setWeakSelf  __weak typeof(self) weakSelf = self;
 

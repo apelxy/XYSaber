@@ -8,7 +8,7 @@
 
 #import "UITableViewCell+XY.h"
 #import <objc/runtime.h>
-#import "XYHeader.h"
+#import "XYMacro.h"
 #import "UIView+XY.h"
 #import "NSObject+XY.h"
 

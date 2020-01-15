@@ -7,7 +7,7 @@
 //
 
 #import "UICollectionView+XY.h"
-#import "XYHeader.h"
+#import "XYMacro.h"
 #import <objc/runtime.h>
 #import "XYDevice.h"
 #import "UIView+XY.h"
