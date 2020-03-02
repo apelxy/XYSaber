@@ -10,10 +10,6 @@
 #import <objc/runtime.h>
 #import "XYButtonSupport.h"
 
-static NSString *title_id = nil;
-static UIColor *titleColor_id = nil;
-static UIImage *image_id = nil;
-static UIImage *backgroundImage_id = nil;
 static XYButtonSupport *support_id = nil;
 
 @interface UIButton ()
@@ -32,35 +28,6 @@ static XYButtonSupport *support_id = nil;
         [self setSupport:support];
     }
     return support;
-}
-//标题
--(void)setTitle:(NSString *)title{
-    [self setTitle:title forState:UIControlStateNormal];
-    objc_setAssociatedObject(self, &title_id, title, OBJC_ASSOCIATION_COPY_NONATOMIC);
-}
--(NSString*)title{
-    return objc_getAssociatedObject(self, &title_id);
-}
-
-//标题颜色
--(void)setTitleColor:(UIColor *)titleColor{
-    [self setTitleColor:titleColor forState:UIControlStateNormal];
-    objc_setAssociatedObject(self, &titleColor_id, titleColor, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-}
--(UIColor*)titleColor{
-    return objc_getAssociatedObject(self, &titleColor_id);
-}
-
-//图片
--(void)setImage:(UIImage *)image{
-    [self setImage:image forState:UIControlStateNormal];
-    objc_setAssociatedObject(self, &image_id, image, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-}
-
-//背景图
--(void)setBackgroundImage:(UIImage *)backgroundImage{
-    [self setBackgroundImage:backgroundImage forState:UIControlStateNormal];
-    objc_setAssociatedObject(self, &backgroundImage_id, backgroundImage, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
 //action

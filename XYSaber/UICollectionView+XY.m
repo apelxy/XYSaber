@@ -8,12 +8,12 @@
 
 #import "UICollectionView+XY.h"
 #import "XYMacro.h"
+#import <UIView+XY.h>
 #import <objc/runtime.h>
-#import "XYDevice.h"
-#import "UIView+XY.h"
+
 @implementation XYCollectionHeaderView
 -(instancetype)initWithHeight:(CGFloat)height reuseIdentifier:(NSString*)reuseIdentifier{
-    self = [super initWithFrame:CGRectMake(0, 0, XYDevice.screenWidth, XYDevice.screenHeight)];
+    self = [super initWithFrame:CGRectMake(0, 0, xy_kwidth, height)];
     if (self) {
         self.reuseIdentifier = reuseIdentifier;
     }
@@ -23,7 +23,7 @@
 
 @implementation XYCollectionFooterView
 -(instancetype)initWithHeight:(CGFloat)height reuseIdentifier:(NSString*)reuseIdentifier{
-    self = [super initWithFrame:CGRectMake(0, 0, XYDevice.screenWidth, XYDevice.screenHeight)];
+    self = [super initWithFrame:CGRectMake(0, 0, xy_kwidth, height)];
     if (self) {
         self.reuseIdentifier = reuseIdentifier;
     }
@@ -59,8 +59,7 @@ static NSMutableArray *footerViewArray_id = nil;
         [self registerClass:registerCellClassArray[i] forCellWithReuseIdentifier:cellId];
     }
     
-    self.delegate = self;
-    self.dataSource = self;
+    
     
     self.contentInset = UIEdgeInsetsMake(headerHeight, 0, 0, 0);//设置头视图高度
     
@@ -76,6 +75,8 @@ static NSMutableArray *footerViewArray_id = nil;
     objc_setAssociatedObject(self, &cellBlock_id, cellBlock, OBJC_ASSOCIATION_COPY_NONATOMIC);
     objc_setAssociatedObject(self, &didSelectBlock_id, didSelectBlock, OBJC_ASSOCIATION_COPY_NONATOMIC);
     
+    self.delegate = self;
+    self.dataSource = self;
 }
 
 - (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath{

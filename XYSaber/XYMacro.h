@@ -9,6 +9,9 @@
 #ifndef XYMacro_h
 #define XYMacro_h
 
+#define xy_kwidth [UIScreen mainScreen].bounds.size.width
+#define xy_kheight [UIScreen mainScreen].bounds.size.height
+
 #define setWeakSelf  __weak typeof(self) weakSelf = self;
 
 #define NSStringFromInt(A) [NSString stringWithFormat:@"%d",A]

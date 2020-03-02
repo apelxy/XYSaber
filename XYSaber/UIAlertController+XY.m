@@ -8,8 +8,10 @@
 
 #import "UIAlertController+XY.h"
 #import "XYApp.h"
+#import "XYMacro.h"
+
 @implementation UIAlertController (XY)
-+(void)xy_showSheetWithTitle:(NSString*)title message:(NSString*)message titles:(NSArray*)titles handleBlock:(void(^)(UIAlertAction *action))handleBlock{
++(void)xy_showSheetWithTitle:(NSString*)title message:(NSString*)message titles:(NSArray*)titles handleBlock:(void(^)(UIAlertAction *action, NSInteger index))handleBlock{
     
     UIAlertController *actionSheet = [UIAlertController alertControllerWithTitle:title message:message preferredStyle:UIAlertControllerStyleActionSheet];
     
@@ -25,7 +27,8 @@
             handledTitle = [title substringFromIndex:2];
         }
         UIAlertAction *action = [UIAlertAction actionWithTitle:handledTitle style:style handler:^(UIAlertAction * _Nonnull action) {
-            handleBlock(action);
+            
+            handleBlock(action,[titles indexOfObject:title]);
         }];
         [actionSheet addAction:action];
     }
