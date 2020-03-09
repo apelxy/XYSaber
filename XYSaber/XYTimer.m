@@ -54,7 +54,7 @@
     XYTimer *timer = [[XYTimer alloc]init];
     [timer startWithTimeInterval:timeInterval handler:^{
         currentTime = currentTime - timeInterval;
-        handler(currentTime >= 0?currentTime:0);
+        handler(timer,currentTime >= 0?currentTime:0);
         if (currentTime <= 0) {
             [timer stop];
         }

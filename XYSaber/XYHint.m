@@ -93,7 +93,7 @@
     [self.view addSubview:self];
     
     if (self.endTime) {
-        [XYTimer countdownWithTotalTime:self.endTime timeInterval:1 handler:^(NSTimeInterval time) {
+        [XYTimer countdownWithTotalTime:self.endTime timeInterval:1 handler:^(XYTimer *timer, NSTimeInterval time) {
             if (time == 0) {
                 [self hide];
             }
