@@ -15,7 +15,7 @@
 -(void)stop;
 -(void)restart;
 
-+(void)countdownWithTotalTime:(NSTimeInterval)totalTime timeInterval:(NSTimeInterval)timeInterval handler:(void(^)(NSTimeInterval time))handler;
++(void)countdownWithTotalTime:(NSTimeInterval)totalTime timeInterval:(NSTimeInterval)timeInterval handler:(void(^)(XYTimer *timer, NSTimeInterval time))handler;
 
 @end
 

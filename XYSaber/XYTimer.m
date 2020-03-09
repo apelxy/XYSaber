@@ -49,7 +49,7 @@
     self.timer = nil;
 }
 
-+(void)countdownWithTotalTime:(NSTimeInterval)totalTime timeInterval:(NSTimeInterval)timeInterval handler:(void(^)(NSTimeInterval time))handler{
++(void)countdownWithTotalTime:(NSTimeInterval)totalTime timeInterval:(NSTimeInterval)timeInterval handler:(void(^)(XYTimer *timer, NSTimeInterval time))handler{
     __block NSTimeInterval currentTime = totalTime;
     XYTimer *timer = [[XYTimer alloc]init];
     [timer startWithTimeInterval:timeInterval handler:^{
