@@ -60,7 +60,7 @@ static NSMutableAttributedString *mutableAttributedString_id = nil;
 -(NSString*)xy_subStringToString:(NSString*)string include:(BOOL)include{
     NSRange range = [self rangeOfString:string];
     if (range.location == NSNotFound) {
-        return @"";
+        return self;
     }
     NSInteger toIndex = include?range.location+string.length:range.location;
     NSString *newString = [self substringToIndex:toIndex];
@@ -69,7 +69,7 @@ static NSMutableAttributedString *mutableAttributedString_id = nil;
 -(NSString*)xy_subStringFromString:(NSString*)string include:(BOOL)include{
     NSRange range = [self rangeOfString:string];
     if (range.location == NSNotFound) {
-        return @"";
+        return self;
     }
     NSInteger fromIndex = include?range.location:range.location + range.length;
     NSString *newString = [self substringFromIndex:fromIndex];
@@ -78,9 +78,16 @@ static NSMutableAttributedString *mutableAttributedString_id = nil;
 -(NSString*)xy_subStringWithBeginString:(NSString*)beginString includeBegin:(BOOL)includeBegin endString:(NSString*)endString includeEnd:(BOOL)includeEnd{
     NSRange beginRange = [self rangeOfString:beginString];
     NSRange endRange = [self rangeOfString:endString];
-    if (beginRange.location == NSNotFound || endRange.location == NSNotFound) {
-        return @"";
+    if (beginRange.location == NSNotFound) {
+        return [self xy_subStringFromString:beginString include:includeBegin];
     }
+    if (endRange.location == NSNotFound) {
+        return [self xy_subStringToString:endString include:includeEnd];
+    }
+    if (beginRange.location == NSNotFound && endRange.location == NSNotFound) {
+        return self;
+    }
+    
     NSInteger originalLength = -1;
     if (includeBegin && includeEnd) {
         originalLength = endRange.location - beginRange.location + endString.length;

@@ -7,44 +7,31 @@
 //
 
 #import "XYTimer.h"
+
 #import "XYMacro.h"
 @interface XYTimer ()
 @property (nonatomic,strong) NSTimer *timer;
-@property (nonatomic,assign) NSInteger currentTime;
-@property (nonatomic,assign) NSInteger endtime;
-@property (nonatomic,copy) void(^handler)(NSInteger time);
+@property (nonatomic,assign) NSTimeInterval timeInterval;
+@property (nonatomic,copy) void(^handler)(void);
 @end
 
 @implementation XYTimer
--(instancetype)init{
-    self = [super init];
-    if (self) {
-        
-    }
-    return self;
-}
--(void)startWithHandler:(void(^)(NSInteger time))handler{
+
+-(void)startWithTimeInterval:(NSTimeInterval)timeInterval handler:(void(^)(void))handler{
     self.handler = handler;
+    self.timeInterval = timeInterval;
     [self start];
+}
+-(void)timerAct{
+    self.handler();
 }
 -(void)start{
     if (!self.timer) {
-        self.currentTime = 0;
-
-        self.timer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(timerAct) userInfo:nil repeats:YES];
-//        [[NSRunLoop currentRunLoop] addTimer:self.timer forMode:NSRunLoopCommonModes];
+        self.timer = [NSTimer scheduledTimerWithTimeInterval:self.timeInterval target:self selector:@selector(timerAct) userInfo:nil repeats:YES];
     }else{
         [self.timer setFireDate:[NSDate date]];
     }
-}
--(void)timerAct{
-    self.currentTime++;
-    if(self.endtime && self.currentTime >= self.endtime){
-        self.currentTime = -1;
-        [self stop];
-    }
     
-    self.handler(self.currentTime);
 }
 -(void)pause{
     [self.timer setFireDate:[NSDate distantFuture]];
@@ -57,19 +44,21 @@
     [self stop];
     [self start];
 }
-
--(instancetype)initWithEndTime:(NSInteger)endTime{
-    self = [super init];
-    if (self) {
-        
-        _endtime = endTime;
-    }
-    return self;
-}
-
-
 -(void)dealloc{
     [self.timer invalidate];
     self.timer = nil;
 }
+
++(void)countdownWithTotalTime:(NSTimeInterval)totalTime timeInterval:(NSTimeInterval)timeInterval handler:(void(^)(NSTimeInterval time))handler{
+    __block NSTimeInterval currentTime = totalTime;
+    XYTimer *timer = [[XYTimer alloc]init];
+    [timer startWithTimeInterval:timeInterval handler:^{
+        currentTime = currentTime - timeInterval;
+        handler(currentTime >= 0?currentTime:0);
+        if (currentTime <= 0) {
+            [timer stop];
+        }
+    }];
+}
+
 @end

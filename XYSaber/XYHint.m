@@ -93,12 +93,12 @@
     [self.view addSubview:self];
     
     if (self.endTime) {
-        self.timer = [[XYTimer alloc]initWithEndTime:self.endTime];
-        [self.timer startWithHandler:^(NSInteger time) {
-            if (time == -1) {
+        [XYTimer countdownWithTotalTime:self.endTime timeInterval:1 handler:^(NSTimeInterval time) {
+            if (time == 0) {
                 [self hide];
             }
         }];
+        
     }
 }
 -(void)xyTimer_time:(NSInteger)time{

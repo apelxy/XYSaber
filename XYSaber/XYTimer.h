@@ -10,11 +10,12 @@
 
 @interface XYTimer : NSObject
 
--(instancetype)initWithEndTime:(NSInteger)endTime;
--(void)startWithHandler:(void(^)(NSInteger time))handler;
+-(void)startWithTimeInterval:(NSTimeInterval)timeInterval handler:(void(^)(void))handler;
 -(void)pause;
 -(void)stop;
 -(void)restart;
+
++(void)countdownWithTotalTime:(NSTimeInterval)totalTime timeInterval:(NSTimeInterval)timeInterval handler:(void(^)(NSTimeInterval time))handler;
 
 @end
 
