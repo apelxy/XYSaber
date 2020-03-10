@@ -44,6 +44,8 @@
 		893DB25823B0A60A00DF9CE8 /* UITableView+XY.h in Headers */ = {isa = PBXBuildFile; fileRef = 893DB25223B0A60A00DF9CE8 /* UITableView+XY.h */; };
 		893DB25923B0A60A00DF9CE8 /* XYTableViewSupport.h in Headers */ = {isa = PBXBuildFile; fileRef = 893DB25323B0A60A00DF9CE8 /* XYTableViewSupport.h */; };
 		893DB25A23B0A60A00DF9CE8 /* XYTableViewSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = 893DB25423B0A60A00DF9CE8 /* XYTableViewSupport.m */; };
+		8942DD8F24173FAA00A91B7A /* UIGestureRecognizer+XY.m in Sources */ = {isa = PBXBuildFile; fileRef = 8942DD8D24173FAA00A91B7A /* UIGestureRecognizer+XY.m */; };
+		8942DD9024173FAA00A91B7A /* UIGestureRecognizer+XY.h in Headers */ = {isa = PBXBuildFile; fileRef = 8942DD8E24173FAA00A91B7A /* UIGestureRecognizer+XY.h */; };
 		8960B59D23ACF38300AA4B31 /* XYNet.h in Headers */ = {isa = PBXBuildFile; fileRef = 8960B59B23ACF38300AA4B31 /* XYNet.h */; };
 		8960B59E23ACF38300AA4B31 /* XYNet.m in Sources */ = {isa = PBXBuildFile; fileRef = 8960B59C23ACF38300AA4B31 /* XYNet.m */; };
 		896DCA3D23CF04D200CC5CC1 /* XYImageViewSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = 896DCA3923CF04D200CC5CC1 /* XYImageViewSupport.m */; };
@@ -106,6 +108,8 @@
 		893DB25223B0A60A00DF9CE8 /* UITableView+XY.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableView+XY.h"; sourceTree = "<group>"; };
 		893DB25323B0A60A00DF9CE8 /* XYTableViewSupport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYTableViewSupport.h; sourceTree = "<group>"; };
 		893DB25423B0A60A00DF9CE8 /* XYTableViewSupport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XYTableViewSupport.m; sourceTree = "<group>"; };
+		8942DD8D24173FAA00A91B7A /* UIGestureRecognizer+XY.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIGestureRecognizer+XY.m"; sourceTree = "<group>"; };
+		8942DD8E24173FAA00A91B7A /* UIGestureRecognizer+XY.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIGestureRecognizer+XY.h"; sourceTree = "<group>"; };
 		8960B59B23ACF38300AA4B31 /* XYNet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYNet.h; sourceTree = "<group>"; };
 		8960B59C23ACF38300AA4B31 /* XYNet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XYNet.m; sourceTree = "<group>"; };
 		896DCA3923CF04D200CC5CC1 /* XYImageViewSupport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XYImageViewSupport.m; sourceTree = "<group>"; };
@@ -187,6 +191,8 @@
 				89102E9623AB91DC00DA5718 /* UILabel+XY.m */,
 				89102E9823AB91DC00DA5718 /* UIScrollView+XY.h */,
 				89102EA123AB91DD00DA5718 /* UIScrollView+XY.m */,
+				8942DD8E24173FAA00A91B7A /* UIGestureRecognizer+XY.h */,
+				8942DD8D24173FAA00A91B7A /* UIGestureRecognizer+XY.m */,
 				89242B6C23B0FF87003B89D8 /* UITableView+IndexView.h */,
 				89242B6D23B0FF87003B89D8 /* UITableView+IndexView.m */,
 				893DB25223B0A60A00DF9CE8 /* UITableView+XY.h */,
@@ -248,6 +254,7 @@
 				89242B6E23B0FF87003B89D8 /* UITableView+IndexView.h in Headers */,
 				89102EAD23AB91DE00DA5718 /* UIAlertController+XY.h in Headers */,
 				89102EC723AB922600DA5718 /* XYMacro.h in Headers */,
+				8942DD9024173FAA00A91B7A /* UIGestureRecognizer+XY.h in Headers */,
 				89102EAE23AB91DE00DA5718 /* UIColor+XY.h in Headers */,
 				89EFFFBE23B05DBD00192A75 /* UITextField+XY.h in Headers */,
 				89102EC023AB91DE00DA5718 /* XYApp.h in Headers */,
@@ -358,6 +365,7 @@
 				89102EBE23AB91DE00DA5718 /* XYTabBarController.m in Sources */,
 				89102ECB23AB92BC00DA5718 /* XYDevice.m in Sources */,
 				89102EAC23AB91DE00DA5718 /* UIAlertController+XY.m in Sources */,
+				8942DD8F24173FAA00A91B7A /* UIGestureRecognizer+XY.m in Sources */,
 				89102EB023AB91DE00DA5718 /* UILabel+XY.m in Sources */,
 				89EFFFBF23B05DBE00192A75 /* UITextField+XY.m in Sources */,
 				89A1461023B32CE700B2DE57 /* UICollectionViewCell+XY.m in Sources */,

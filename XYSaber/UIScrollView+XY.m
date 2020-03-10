@@ -5,15 +5,15 @@
 //  Created by lxy on 2019/4/9.
 //  Copyright © 2019年 lxy. All rights reserved.
 //
-#define kWidth [UIScreen mainScreen].bounds.size.width
-#define kHeight [UIScreen mainScreen].bounds.size.height
-#define setWeakSelf  __weak typeof(self) weakSelf = self;
+
 #import "UIScrollView+XY.h"
 #import "NSObject+XY.h"
 #import <objc/runtime.h>
 #import "XYApp.h"
+#import "XYMacro.h"
 #import "UIView+XY.h"
 #import "UILabel+XY.h"
+#import "UIGestureRecognizer+XY.h"
 @interface UIScrollView ()<UIGestureRecognizerDelegate>
 
 @property (nonatomic,assign) CGFloat pullDownActivityHeight;
@@ -105,6 +105,10 @@ static NSString *pullUpActivited_id = nil;
 }
 
 -(BOOL)gestureRecognizer:(UIGestureRecognizer*)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer*)otherGestureRecognizer{
+    
+    if (![gestureRecognizer.tag isEqualToString:@"UIPanGestureRecognizer_pullDown"] && ![gestureRecognizer.tag isEqualToString:@"UIPanGestureRecognizer_pullUp"]) {
+        return NO;
+    }
     if ([gestureRecognizer.view isKindOfClass:[UIScrollView class]]) {
         return YES;
     }else{
@@ -127,6 +131,7 @@ static NSString *pullUpActivited_id = nil;
     
     UIPanGestureRecognizer *panGes = [[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(pullDownGes:)];
     panGes.delegate = self;
+    panGes.tag = @"UIPanGestureRecognizer_pullDown";
     [self addGestureRecognizer:panGes];
     
     setWeakSelf
@@ -270,6 +275,7 @@ static NSString *pullUpActivited_id = nil;
     
     UIPanGestureRecognizer *panGes = [[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(pullUpGes:)];
     panGes.delegate = self;
+    panGes.tag = @"UIPanGestureRecognizer_pullUp";
     [self addGestureRecognizer:panGes];
     
     setWeakSelf
