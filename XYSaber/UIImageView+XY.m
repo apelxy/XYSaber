@@ -9,12 +9,12 @@
 #import "UIImageView+XY.h"
 #import "NSThread+XY.h"
 #import <objc/runtime.h>
-#import "XYMacro.h"
+#import "UIView+XY.h"
+#import "UIImage+XY.h"
+#import "UIButton+XY.h"
 #import "XYImageViewSupport.h"
 #import "XYApp.h"
 #import "XYMedia.h"
-#import "UIButton+XY.h"
-#import "UIView+XY.h"
 @interface UIImageView ()
 @property (nonatomic,copy) NSString *url;
 @property (nonatomic,strong) UIButton *actionBtn;
@@ -134,6 +134,9 @@ static UIButton *actionBtn_id = nil;
 -(NSDictionary*)getImageInfoWithVideo:(NSString*)videoPath{
     
     UIImage *urlImage = [XYMedia getVideoPreViewImage:videoPath];
+    if (!urlImage) {
+        urlImage = [UIImage xy_imageWithColor:[UIColor blackColor] size:CGSizeMake(10, 10)];
+    }
     NSData *data = UIImagePNGRepresentation(urlImage);
 
     return @{

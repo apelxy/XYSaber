@@ -78,11 +78,11 @@ static NSMutableAttributedString *mutableAttributedString_id = nil;
 -(NSString*)xy_subStringWithBeginString:(NSString*)beginString includeBegin:(BOOL)includeBegin endString:(NSString*)endString includeEnd:(BOOL)includeEnd{
     NSRange beginRange = [self rangeOfString:beginString];
     NSRange endRange = [self rangeOfString:endString];
-    if (beginRange.location == NSNotFound) {
-        return [self xy_subStringFromString:beginString include:includeBegin];
-    }
-    if (endRange.location == NSNotFound) {
+    if (beginRange.location == NSNotFound && endRange.location != NSNotFound) {
         return [self xy_subStringToString:endString include:includeEnd];
+    }
+    if (endRange.location == NSNotFound && beginRange.location != NSNotFound) {
+        return [self xy_subStringFromString:beginString include:includeBegin];
     }
     if (beginRange.location == NSNotFound && endRange.location == NSNotFound) {
         return self;
