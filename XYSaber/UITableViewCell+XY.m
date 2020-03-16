@@ -12,18 +12,11 @@
 #import "UIView+XY.h"
 #import "NSObject+XY.h"
 
-@interface SlideBackView : UIView
-@end
-@implementation SlideBackView
-@end
-
-
-
-#pragma mark ---------------------------------------------------------------------------------------
+#define UITableViewCellLeftSwipeOtherCellSwipeNotification @"UITableViewCellLeftSwipeOtherCellSwipeNotification"
 
 @interface UITableViewCell ()<UIGestureRecognizerDelegate>
-@property (nonatomic,strong) SlideBackView *backView;
 @property (nonatomic,strong) UIView *coverView;
+@property (nonatomic,strong) UIPanGestureRecognizer *swipeGes;
 @property (nonatomic,assign) CGPoint backViewPoint;
 @property (nonatomic,assign) UIView *diyView;
 @property (nonatomic,assign) CGFloat leftSwipeCellWidth;
@@ -74,22 +67,7 @@ static NSString *backViewPointY_id = nil;
 -(CGPoint)backViewPoint{
     return CGPointMake([objc_getAssociatedObject(self, &backViewPointX_id)floatValue], [objc_getAssociatedObject(self, &backViewPointY_id)floatValue]);
 }
-//backView
-static SlideBackView *backView_id = nil;
--(void)setBackView:(SlideBackView *)backView{
-    objc_setAssociatedObject(self, &backView_id, backView, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-}
--(SlideBackView*)backView{
-    return objc_getAssociatedObject(self, &backView_id);
-}
-//backView
-static UIView *coverView_id = nil;
--(void)setCoverView:(UIView *)coverView{
-    objc_setAssociatedObject(self, &coverView_id, coverView, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-}
--(UIView*)coverView{
-    return objc_getAssociatedObject(self, &coverView_id);
-}
+
 //diyView
 static UIView *diyView_id = nil;
 -(void)setDiyView:(UIView *)diyView{
@@ -114,94 +92,82 @@ static NSString *leftSwipeCellHeight_id = nil;
 -(CGFloat)leftSwipeCellHeight{
     return [objc_getAssociatedObject(self, &leftSwipeCellHeight_id)floatValue];
 }
-
-
-
-//移除左滑编辑功能
--(void)xy_removeLeftSwipe{
-    NSArray *subArray = self.backView.subviews;
-    for (UIView *view in subArray) {
-        [self addSubview:view];
-    }
-    [self.backView removeFromSuperview];
-    [self.diyView removeFromSuperview];
-    self.backViewPoint = CGPointZero;
-    [[NSNotificationCenter defaultCenter]removeObserver:self];
+//coverView
+static UIView *coverView_id = nil;
+-(void)setCoverView:(UIView *)coverView{
+    objc_setAssociatedObject(self, &coverView_id, coverView, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+-(UIView*)coverView{
+    return objc_getAssociatedObject(self, &coverView_id);
+}
+//swipeGes
+static UIPanGestureRecognizer *swipeGes_id = nil;
+-(void)setSwipeGes:(UIPanGestureRecognizer *)swipeGes{
+    objc_setAssociatedObject(self, &swipeGes_id, swipeGes, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+-(UIPanGestureRecognizer*)swipeGes{
+    return objc_getAssociatedObject(self, &swipeGes_id);
 }
 //添加左滑编辑功能
 -(void)xy_addLeftSwipeWithView:(UIView*)diyView cellWidth:(CGFloat)cellWidth cellHeight:(CGFloat)cellHeight{
     setWeakSelf
-    
+    self.selectionStyle = UITableViewCellSelectionStyleNone;
     [self xy_removeLeftSwipe];//先移除旧的
-    
+
     self.leftSwipeCellWidth = cellWidth;
     self.leftSwipeCellHeight = cellHeight;
-    
-    self.backView = [[SlideBackView alloc]initWithFrame:CGRectMake(0, 0, self.leftSwipeCellWidth, self.leftSwipeCellHeight)];
-    self.backView.backgroundColor = self.backgroundColor;
-    [self addSubview:self.backView];
-    
-    
-    UIPanGestureRecognizer *swipeGes = [[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(swipeGesAct:)];
-    swipeGes.delegate = self;
-    [self.backView addGestureRecognizer:swipeGes];
-    
-    NSArray *subArray = self.subviews;
-    for (UIView *view in subArray) {
-        NSString *viewClassString = NSStringFromClass([view class]);
-        if (![viewClassString isEqualToString:@"SlideBackView"] && ![viewClassString isEqualToString:@"UITableViewCellContentView"]) {
-            [self.backView addSubview:view];
-        }
-    }
-    
-    //加盖子
-    self.coverView =[[UIView alloc]initWithFrame:CGRectMake(0, 0, self.backView.width - 30, self.leftSwipeCellHeight)];
-//    self.coverView.backgroundColor = [[UIColor redColor]colorWithAlphaComponent:.1];
+
+    self.coverView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, cellWidth, cellHeight)];
     self.coverView.hidden = YES;
     self.coverView.click = ^{
-        [weakSelf hideLeftSwipe];
+        [weakSelf xy_hideLeftSwipe];
     };
-    [self.backView addSubview:self.coverView];
+    [self.contentView addSubview:self.coverView];
+    
+    self.swipeGes = [[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(swipeGesAct:)];
+    self.swipeGes.delegate = self;
+    [self.contentView addGestureRecognizer:self.swipeGes];
+    
     
     //左滑漏出的视图
     self.diyView = diyView;
     diyView.maxX = self.leftSwipeCellWidth;
-    [self insertSubview:diyView belowSubview:self.backView];
+    [self insertSubview:diyView belowSubview:self.contentView];
     
-    //接收左滑通知
-    [self xy_addObserveWithName:@"UITableViewCellLeftSwipeNotification" activate:^(NSNotification * _Nonnull notification) {
+    //接收其他cell左滑通知后取消本cell的左滑状态
+    [self xy_addObserveWithName:UITableViewCellLeftSwipeOtherCellSwipeNotification activate:^(NSNotification * _Nonnull notification) {
         UITableViewCell *cell = notification.object;
         if (cell != self) {
-            [weakSelf hideLeftSwipe];
+            [weakSelf xy_hideLeftSwipe];
         }
     }];
 }
 
--(void)swipeGesAct:(UIGestureRecognizer*)ges{
+-(void)swipeGesAct:(UIPanGestureRecognizer*)ges{
     if (ges.state == UIGestureRecognizerStateBegan) {
-        self.backViewPoint = [ges locationInView:self.backView];
+        self.backViewPoint = [ges locationInView:self.contentView];
         //发送左滑通知
-        [[NSNotificationCenter defaultCenter]postNotificationName:@"UITableViewCellLeftSwipeNotification" object:self];
+        [[NSNotificationCenter defaultCenter]postNotificationName:UITableViewCellLeftSwipeOtherCellSwipeNotification object:nil];
     }else if (ges.state == UIGestureRecognizerStateChanged){
         CGPoint point = [ges locationInView:self];
         CGFloat differenceX= point.x - self.backViewPoint.x;
         CGFloat newX = 0 + differenceX;
-        self.backView.x = newX;
+        self.contentView.x = newX;
         if (newX < -self.diyView.width) {
-            self.backView.x = 0 - self.diyView.width;
+            self.contentView.x = 0 - self.diyView.width;
         }else if (newX > 0){
-            self.backView.x = 0;
+            self.contentView.x = 0;
         }
     }else if (ges.state == UIGestureRecognizerStateEnded){
-        if (self.backView.maxX < self.leftSwipeCellWidth - self.diyView.width / 2) {
+        if (self.contentView.maxX < self.leftSwipeCellWidth - self.diyView.width / 2) {
             [UIView animateWithDuration:.1 animations:^{
-                self.backView.x = 0 - self.diyView.width;
                 self.coverView.hidden = NO;
+                self.contentView.x = 0 - self.diyView.width;
             }];
         }else{
             [UIView animateWithDuration:.1 animations:^{
-                self.backView.x = 0;
-                self.coverView.hidden = YES;
+                self.contentView.x = 0;
+
             }];
         }
     }
@@ -216,12 +182,22 @@ static NSString *leftSwipeCellHeight_id = nil;
 }
 
 //收起左滑
--(void)hideLeftSwipe{
+-(void)xy_hideLeftSwipe{
+    self.coverView.hidden = YES;
     [UIView animateWithDuration:.3 animations:^{
-        self.backView.x = 0;
-        self.coverView.hidden = YES;
+        self.contentView.x = 0;
     }];
 }
 
+//移除左滑编辑功能
+-(void)xy_removeLeftSwipe{
+    
+    self.contentView.x = 0;
+    [self.diyView removeFromSuperview];
+    self.backViewPoint = CGPointZero;
+    [[NSNotificationCenter defaultCenter]removeObserver:self name:UITableViewCellLeftSwipeOtherCellSwipeNotification object:nil];
+    [self.contentView removeGestureRecognizer:self.swipeGes];
+    
+}
 
 @end

@@ -17,6 +17,7 @@ typedef void(^XYTableViewCellTransBlock)(id parameter);
 @property (nonatomic,assign) CGFloat height;
 
 -(void)xy_addLeftSwipeWithView:(UIView*)diyView cellWidth:(CGFloat)cellWidth cellHeight:(CGFloat)cellHeight;
+-(void)xy_hideLeftSwipe;
 -(void)xy_removeLeftSwipe;
 
 @end

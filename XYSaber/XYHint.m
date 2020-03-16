@@ -11,101 +11,100 @@
 #import "XYTimer.h"
 
 @interface XYHint ()
-@property (nonatomic,strong) UIView *view;
-@property (nonatomic,copy) NSString *message;
-@property (nonatomic,assign) BOOL loading;
-
-
+@property (nonatomic,strong) UIView *inView;
 @property (nonatomic,strong) UIView *contentView;
+@property (nonatomic,assign) BOOL loading;
 @property (nonatomic,strong) UIActivityIndicatorView *loadingView;
 @property (nonatomic,strong) UILabel *msgLabel;
 
-@property (nonatomic,strong) XYTimer *timer;
 @end
 
 @implementation XYHint
--(instancetype)initWithView:(UIView*)view message:(NSString*)message loading:(BOOL)loading{
-    self = [super initWithFrame:CGRectMake(0, 0, CGRectGetWidth(view.frame), CGRectGetHeight(view.frame))];
+-(instancetype)initWithView:(UIView *)view loading:(BOOL)loading{
+    
+    self = [super initWithFrame:CGRectMake(0, 0, view.width, view.height)];
     if (self) {
-        
-        self.view = view;
-        self.message = message;
+        self.inView = view;
         self.loading = loading;
+        
     }
     return self;
 }
-
 -(UIView*)contentView{
     if (!_contentView) {
         _contentView = [[UIView alloc]init];
         _contentView.backgroundColor = [[UIColor blackColor]colorWithAlphaComponent:.8];
         _contentView.layer.cornerRadius = 3;
+        [self addSubview:_contentView];
     }
     return _contentView;
 }
 -(UIActivityIndicatorView*)loadingView{
     if (!_loadingView) {
         _loadingView = [[UIActivityIndicatorView alloc]initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
-//        _loadingView.frame = CGRectMake(0, 0, 30, 30);
         _loadingView.color = [UIColor whiteColor];
         _loadingView.backgroundColor = [UIColor clearColor];
-//        NSLog(@"%f",_loadingView.width);
         [_loadingView startAnimating];
     }
     return _loadingView;
 }
 -(UILabel*)msgLabel{
     if (!_msgLabel) {
-        _msgLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0,[self contentSize:self.message].width + 50, [self contentSize:self.message].height)];
-        _msgLabel.text = self.message;
+        _msgLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 0, 0)];
+//        _msgLabel.text = self.message;
         _msgLabel.textAlignment = NSTextAlignmentCenter;
         _msgLabel.textColor = [UIColor whiteColor];
         _msgLabel.numberOfLines = 0;
         _msgLabel.font = [UIFont systemFontOfSize:15];
+        [self.contentView addSubview:_msgLabel];
     }
     return _msgLabel;
 }
-
--(void)show{
+-(void)setText:(NSString *)text{
+    _text = text;
     
+    self.msgLabel.text = self.text;
+    self.msgLabel.y = _loadingView.maxY + 5;
+    self.msgLabel.width = [self contentSize:self.text].width + 50;
+    self.msgLabel.height = [self contentSize:self.text].height;
+    
+    self.contentView.width = self.msgLabel.width;
+    self.contentView.height = self.msgLabel.maxY + 10;
+    self.contentView.midX = self.width / 2;
+    self.contentView.midY = self.height / 2;
+    
+    _loadingView.midX = self.contentView.width / 2;
+    
+}
+-(void)setLoading:(BOOL)loading{
+    _loading = loading;
     if (_loading) {
         [self.contentView addSubview:self.loadingView];
         self.loadingView.y = 10;
         self.contentView.height = self.loadingView.maxY+10;
         self.contentView.width = self.loadingView.width+60;
         self.loadingView.midX = self.contentView.width / 2;
-    }
-    
-    if (_message) {
-        [self.contentView addSubview:self.msgLabel];
-        self.msgLabel.y = _loadingView.maxY + 5;
         
-        self.contentView.width = self.msgLabel.width;
-        self.contentView.height = self.msgLabel.maxY + 10;
-        
-        _loadingView.midX = self.contentView.width / 2;
+        self.contentView.midX = self.width / 2;
+        self.contentView.midY = self.height / 2;
     }
+}
+-(void)show{
     
-    self.contentView.midX = self.width / 2;
-    self.contentView.midY = self.height / 2;
     
-    [self addSubview:self.contentView];
-    [self.view addSubview:self];
+    [self.inView addSubview:self];
     
     if (self.endTime) {
         [XYTimer countdownWithTotalTime:self.endTime timeInterval:1 handler:^(XYTimer *timer, NSTimeInterval time) {
             if (time == 0) {
-                [self hide];
+                [self end];
             }
         }];
         
     }
 }
--(void)xyTimer_time:(NSInteger)time{
-//    NSLog(@"%ld",time);
-    
-}
--(void)hide{
+
+-(void)end{
     [self removeFromSuperview];
 }
 -(CGSize)contentSize:(NSString*)content{

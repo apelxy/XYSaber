@@ -183,7 +183,8 @@ static UIColor *borderColor_id = nil;
 //显示提示信息
 -(void)xy_showMsg:(NSString*)msg endTime:(NSInteger)endTime{
     
-    XYHint *hint = [[XYHint alloc]initWithView:self message:msg loading:NO];
+    XYHint *hint = [[XYHint alloc]initWithView:self loading:NO];
+    hint.text = msg;
     hint.endTime = endTime;
     [hint show];
 }

@@ -13,7 +13,7 @@
 
 @implementation XYCollectionHeaderView
 -(instancetype)initWithHeight:(CGFloat)height reuseIdentifier:(NSString*)reuseIdentifier{
-    self = [super initWithFrame:CGRectMake(0, 0, xy_kwidth, height)];
+    self = [super initWithFrame:CGRectMake(0, 0, xy_kWidth, height)];
     if (self) {
         self.reuseIdentifier = reuseIdentifier;
     }
@@ -23,7 +23,7 @@
 
 @implementation XYCollectionFooterView
 -(instancetype)initWithHeight:(CGFloat)height reuseIdentifier:(NSString*)reuseIdentifier{
-    self = [super initWithFrame:CGRectMake(0, 0, xy_kwidth, height)];
+    self = [super initWithFrame:CGRectMake(0, 0, xy_kWidth, height)];
     if (self) {
         self.reuseIdentifier = reuseIdentifier;
     }

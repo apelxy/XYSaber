@@ -20,7 +20,8 @@
 +(void)xy_createGlobalThread:(void(^)(void))globalHandler;
 +(void)xy_backToMainThread:(void(^)(void))mainHandler;
 
-
++(void)relieveWait;
++(void)wait;
 
 @end
 

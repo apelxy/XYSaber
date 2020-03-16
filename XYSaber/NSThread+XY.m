@@ -10,8 +10,7 @@
 #import <objc/runtime.h>
 
 @interface NSThread ()
-//@property (nonatomic,strong) XYThreadSupport *threadSupport;
-
+@property (nonatomic,assign) BOOL waitTaskHasBack;
 @end
 
 @implementation NSThread (XY)
@@ -51,5 +50,22 @@
     });
 }
 
+static NSString *waitTaskHasBack_id = nil;
+-(void)setWaitTaskHasBack:(BOOL)waitTaskHasBack{
+    objc_setAssociatedObject(self, &waitTaskHasBack_id, [NSString stringWithFormat:@"%d",waitTaskHasBack], OBJC_ASSOCIATION_COPY_NONATOMIC);
+}
+-(BOOL)waitTaskHasBack{
+    return [objc_getAssociatedObject(self, &waitTaskHasBack_id)intValue];
+}
++(void)relieveWait{
+    
+    [NSThread currentThread].waitTaskHasBack = YES;
+}
++(void)wait{
+    while (![NSThread currentThread].waitTaskHasBack) {
+        [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate distantFuture]];
+    }
+    [NSThread currentThread].waitTaskHasBack = NO;
+}
 
 @end

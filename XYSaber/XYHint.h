@@ -11,10 +11,12 @@
 
 @interface XYHint : UIView
 @property (nonatomic,assign) NSInteger endTime;
+@property (nonatomic,copy) NSString *text;
 
--(instancetype)initWithView:(UIView*)view message:(NSString*)message loading:(BOOL)loading;
+
+-(instancetype)initWithView:(UIView *)view loading:(BOOL)loading;
 -(void)show;
--(void)hide;
+-(void)end;
 @end
 
 
