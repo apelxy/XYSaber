@@ -11,8 +11,6 @@
 
 @interface XYHttp : NSObject
 
-@property (nonatomic,assign) NSInteger retryCount;
-
 + (void)requestWithURL:(NSString*)url parameters:(id)parameters headers:(NSDictionary*)headers retryCount:(int)retryCount success:(void (^)(NSURLResponse *response, NSData *data))success failure:(void (^)(NSError *error))failure;
 
 
