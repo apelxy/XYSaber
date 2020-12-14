@@ -7,11 +7,64 @@
 //
 
 #import "XYTabBarController.h"
-#import "UIButton+XY.h"
-#import "XYMacro.h"
 #import "UIView+XY.h"
-#import "UIColor+XY.h"
+#import "UIButton+XY.h"
 #import "XYDevice.h"
+#import "XYMacro.h"
+#import "UIColor+XY.h"
+#import "XYMasonry.h"
+
+@interface XYTabBarItem ()
+@property (nonatomic, strong) UIImageView *imgv;
+@property (nonatomic, strong) UILabel *label;
+@end
+
+@implementation XYTabBarItem
+
+- (instancetype)init{
+    self = [XYTabBarItem buttonWithType:UIButtonTypeCustom];
+    if (self) {
+        
+        [self addSubview:self.imgv];
+        [self addSubview:self.label];
+        
+    }
+    return self;
+}
+- (void)layoutSubviews{
+    [self.imgv mas_makeConstraints:^(XYMASConstraintMaker *make) {
+        make.width.mas_equalTo(30);
+        make.height.mas_equalTo(30);
+        make.top.mas_equalTo(5);
+        make.centerX.equalTo(self.mas_centerX);
+    }];
+    
+    [self.label mas_makeConstraints:^(XYMASConstraintMaker *make) {
+        make.width.equalTo(self.mas_width);
+        make.height.mas_equalTo(4);
+        make.top.mas_equalTo(37);
+        make.centerX.equalTo(self.mas_centerX);
+    }];
+}
+- (UIImageView *)imgv{
+    if (!_imgv) {
+        _imgv = [[UIImageView alloc]initWithFrame:CGRectMake(0, 5, 30, 30)];
+        _imgv.midX = self.width / 2;
+        
+    }
+    return _imgv;
+}
+- (UILabel *)label{
+    if (!_label) {
+        _label = [[UILabel alloc]initWithFrame:CGRectMake(0, _imgv.maxY + 2, self.width, self.height - _imgv.maxY - 4)];
+        _label.textAlignment = NSTextAlignmentCenter;
+        _label.font = [UIFont systemFontOfSize:_label.height - .5];
+        
+    }
+    return _label;
+}
+@end
+
 @interface XYTabBarController ()
 @property (nonatomic,strong) NSMutableArray *itemArray;
 @property (nonatomic,strong) NSMutableArray *titleLabelArray;
@@ -33,40 +86,55 @@
         UIViewController *vc = self.viewControllers[i];
         [self addChildViewController:vc];
         [self.tabBar addSubview:[self getItemWithIndex:i]];
+        
+        //触发
+        if (self.diyItemBlock) {
+            self.diyItemBlock(self.itemArray, i);
+        }
     }
     [self setSelectedItemWithIndex:0];
 }
--(UIView*)getItemWithIndex:(NSInteger)index{
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    NSArray *subViews = self.tabBar.subviews;
+    for (UIView *view in subViews) {
+        [self.tabBar bringSubviewToFront:view];
+    }
+}
+- (UIView*)getItemWithIndex:(NSInteger)index{
     CGFloat itemWidth = self.tabBar.width / self.viewControllers.count;
-    UIButton *item = [UIButton buttonWithType:UIButtonTypeCustom];
+    XYTabBarItem *item = [XYTabBarItem buttonWithType:UIButtonTypeCustom];
     item.frame = CGRectMake(itemWidth * index, 0, itemWidth, 49);
+//    [item mas_makeConstraints:^(XYMASConstraintMaker *make) {
+//        make.width.mas_equalTo(itemWidth);
+//        make.height.mas_equalTo(49);
+//        make.left.mas_equalTo(itemWidth * index);
+//        make.top.mas_equalTo(0);
+//    }];
     [self.tabBar addSubview:item];
     [self.itemArray addObject:item];
     item.action = ^(UIButton *button) {
         [self setSelectedItemWithIndex:index];
     };
     
-    UIImageView *imgV = [[UIImageView alloc]initWithFrame:CGRectMake(0, 5, 30, 30)];
-    imgV.midX = item.width / 2;
-//    imgV.backgroundColor = [UIColor grayColor];
-    imgV.image = self.images[index];
-    [item addSubview:imgV];
-    [self.imageArray addObject:imgV];
     
-    UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(0, imgV.maxY + 2, item.width, item.height - imgV.maxY - 4)];
-    label.textAlignment = NSTextAlignmentCenter;
-    label.font = [UIFont systemFontOfSize:label.height - .5];
-    label.text = self.titles[index];
-    [item addSubview:label];
-    [self.titleLabelArray addObject:label];
+//    imgV.backgroundColor = [UIColor grayColor];
+    item.imgv.image = self.images[index];
+    [item addSubview:item.imgv];
+    [self.imageArray addObject:item.imgv];
+    
+    
+    item.label.text = self.titles[index];
+    [item addSubview:item.label];
+    [self.titleLabelArray addObject:item.label];
     
     return item;
 }
--(UIView*)tabBar{
+- (UIView*)tabBar{
     if (!_tabBar) {
-        _tabBar = [[UIView alloc]initWithFrame:CGRectMake(0, XYDevice.screenHeight - 49, XYDevice.screenWidth, 49)];
+        _tabBar = [[UIView alloc]initWithFrame:CGRectMake(0, xy_kHeight - 49, xy_kWidth, 49)];
         if (XYDevice.isX) {
-            _tabBar.y = XYDevice.screenHeight - 49 - 34;
+            _tabBar.y = xy_kHeight - 49 - 34;
             _tabBar.height = 49+34;
         }
         _tabBar.backgroundColor = [UIColor whiteColor];
@@ -78,15 +146,12 @@
     }
     return _tabBar;
 }
--(void)setSelectedIndex:(NSInteger)selectedIndex{
+- (void)setSelectedIndex:(NSInteger)selectedIndex{
     _selectedIndex = selectedIndex;
     [self setSelectedItemWithIndex:selectedIndex];
 }
--(void)setSelectedItemWithIndex:(NSInteger)index{
-    //触发
-    if (self.diyItemBlock) {
-        self.diyItemBlock(self.itemArray, index);
-    }
+- (void)setSelectedItemWithIndex:(NSInteger)index{
+    
     
     //切换控制器
     UIViewController *vc = self.viewControllers[index];

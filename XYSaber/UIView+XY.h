@@ -33,19 +33,6 @@
 
 -(void)xy_setMulCornerWithRadius:(CGFloat)radius corners:(UIRectCorner)corners;
 
-
--(void)xy_topConstraintToSuperWithConstraintValue:(CGFloat)constraintValue;
--(void)xy_bottomConstraintToSuperWithConstraintValue:(CGFloat)constraintValue;
--(void)xy_leftConstraintToSuperWithConstraintValue:(CGFloat)constraintValue;
--(void)xy_rightConstraintToSuperWithConstraintValue:(CGFloat)constraintValue;
-
-
--(void)xy_topConstraintToObjectBottom:(UIView*)objectView constraintValue:(CGFloat)constraintValue;
--(void)xy_bottomConstraintToObjectTop:(UIView*)objectView constraintValue:(CGFloat)constraintValue;
--(void)xy_leftConstraintToObjectRight:(UIView*)objectView constraintValue:(CGFloat)constraintValue;
--(void)xy_rightConstraintToObjectLeft:(UIView*)objectView constraintValue:(CGFloat)constraintValue;
-
-
 -(void)xy_transformAngle:(CGFloat)angle;
 
 @end
